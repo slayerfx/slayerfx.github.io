@@ -4,9 +4,26 @@
    Ecrit a la main, sans framework et sans etape de build. Aucune ressource
    n'est chargee depuis un CDN : la page s'affiche entierement hors ligne.
 
-   Les polices sont celles du systeme pour l'instant. Le jour ou l'on embarque
-   une police d'affichage, seule --font-display change.
+   Une seule police est embarquee, pour les titres et les chiffres. Le corps de
+   texte reste en police systeme : rien a telecharger, rendu immediat et familier.
    ============================================================================= */
+
+/* ---------------------------------------------------------------- police */
+
+/* Bricolage Grotesque, sous-ensemble latin, embarquee dans le depot plutot
+   que chargee depuis un CDN. Fichier variable : un seul telechargement couvre
+   les graisses 400 a 800 et l'axe de taille optique, ce qui lui permet de
+   tenir aussi bien a 13 px qu'a 116.
+   SIL Open Font License 1.1 — voir fonts/OFL.txt */
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("../fonts/bricolage-grotesque.woff2") format("woff2");
+  font-weight: 400 800;
+  font-style: normal;
+  /* `swap` : le texte s'affiche tout de suite dans la police systeme, la
+     substitution se fait a l'arrivee du fichier. Rien n'est jamais invisible. */
+  font-display: swap;
+}
 
 /* ---------------------------------------------------------------- jetons */
 
@@ -26,7 +43,7 @@
   --page: 1120px;
   --gap: clamp(72px, 9vw, 128px);
 
-  --font-display: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, -apple-system, sans-serif;
   --font-body: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
   --font-mono: ui-monospace, "Cascadia Mono", SFMono-Regular, Consolas, monospace;
 }
@@ -138,6 +155,7 @@ code {
 
 h1 {
   font-family: var(--font-display);
+  font-optical-sizing: auto;
   font-size: clamp(52px, 9.5vw, 116px);
   line-height: .92;
   letter-spacing: -.035em;
