@@ -1,0 +1,458 @@
+/* =============================================================================
+   Portfolio — Louenn Penanc'hoat
+
+   Ecrit a la main, sans framework et sans etape de build. Aucune ressource
+   n'est chargee depuis un CDN : la page s'affiche entierement hors ligne.
+
+   Les polices sont celles du systeme pour l'instant. Le jour ou l'on embarque
+   une police d'affichage, seule --font-display change.
+   ============================================================================= */
+
+/* ---------------------------------------------------------------- jetons */
+
+:root {
+  --bg: #faf9f7;
+  --bg-sunk: #f2f0ec;
+  --surface: #ffffff;
+  --line: #e2ded7;
+  --line-strong: #cdc7bd;
+  --text: #14161a;
+  --text-dim: #55585f;
+  --text-faint: #86888f;
+  --accent: #1f3ce8;
+  --accent-dark: #1730b8;
+  --accent-soft: #e8ebfd;
+
+  --page: 1120px;
+  --gap: clamp(72px, 9vw, 128px);
+
+  --font-display: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, "Cascadia Mono", SFMono-Regular, Consolas, monospace;
+}
+
+/* ----------------------------------------------------------------- socle */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 17px/1.6 var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, p, ul, ol, dl, dd, figure, table { margin: 0; }
+ul, ol { padding: 0; list-style: none; }
+img { display: block; max-width: 100%; height: auto; }
+
+a { color: inherit; }
+
+code {
+  font-family: var(--font-mono);
+  font-size: .88em;
+  background: var(--bg-sunk);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: .08em .34em;
+}
+
+/* Lien d'evitement : premier element focusable, invisible tant qu'on ne
+   navigue pas au clavier. */
+.skip {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  background: var(--text);
+  color: var(--bg);
+  padding: 12px 18px;
+  text-decoration: none;
+}
+.skip:focus { left: 0; }
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ------------------------------------------------------------ barre haute */
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  max-width: var(--page);
+  margin: 0 auto;
+  padding: 18px 28px;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(10px);
+}
+
+.mark {
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-decoration: none;
+  font-size: 15px;
+}
+
+.topbar nav ul { display: flex; gap: 26px; }
+
+.topbar nav a {
+  font-size: 15px;
+  color: var(--text-dim);
+  text-decoration: none;
+  transition: color .15s;
+}
+.topbar nav a:hover { color: var(--accent); }
+
+/* --------------------------------------------------------------- accroche */
+
+.hero {
+  max-width: var(--page);
+  margin: 0 auto;
+  padding: clamp(40px, 7vw, 96px) 28px var(--gap);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: clamp(32px, 5vw, 72px);
+  align-items: center;
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin-bottom: 22px;
+}
+
+h1 {
+  font-family: var(--font-display);
+  font-size: clamp(52px, 9.5vw, 116px);
+  line-height: .92;
+  letter-spacing: -.035em;
+  font-weight: 700;
+  margin-bottom: 28px;
+}
+
+.lede {
+  font-size: clamp(17px, 1.7vw, 20px);
+  line-height: 1.55;
+  color: var(--text-dim);
+  max-width: 46ch;
+}
+.lede strong { color: var(--text); font-weight: 650; }
+
+.seeking {
+  margin-top: 18px;
+  font-size: 17px;
+  max-width: 46ch;
+}
+.seeking strong { color: var(--accent); font-weight: 650; }
+
+.links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 32px; }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  height: 44px;
+  padding: 0 20px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--text);
+  font-size: 15px;
+  font-weight: 550;
+  text-decoration: none;
+  transition: border-color .15s, background .15s, color .15s;
+}
+.btn:hover { border-color: var(--text); }
+
+.btn-primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+.btn-primary:hover { background: var(--accent-dark); border-color: var(--accent-dark); }
+
+/* Le detourage de la photo a des bords imparfaits : un fond plein et un
+   masque circulaire les absorbent. */
+.hero-photo {
+  width: clamp(180px, 22vw, 260px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  overflow: hidden;
+  background: var(--bg-sunk);
+  border: 1px solid var(--line);
+  flex: none;
+}
+.hero-photo img { width: 100%; height: 100%; object-fit: cover; }
+
+/* --------------------------------------------------------------- sections */
+
+.section {
+  max-width: var(--page);
+  margin: 0 auto;
+  padding: 0 28px var(--gap);
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(30px, 4vw, 46px);
+  line-height: 1.05;
+  letter-spacing: -.022em;
+  font-weight: 700;
+  padding-bottom: 20px;
+  margin-bottom: 44px;
+  border-bottom: 1px solid var(--line);
+}
+
+.section-lede {
+  font-size: 18px;
+  color: var(--text-dim);
+  max-width: 62ch;
+  margin-bottom: 40px;
+}
+.section-lede a { color: var(--accent); text-underline-offset: 3px; }
+
+/* ---------------------------------------------------------------- projets */
+
+.project {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  gap: clamp(28px, 4vw, 56px);
+  align-items: start;
+  padding-bottom: clamp(48px, 6vw, 80px);
+}
+.project + .project { border-top: 1px solid var(--line); padding-top: clamp(48px, 6vw, 80px); }
+
+.project-media {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--surface);
+}
+
+.project h3 {
+  font-family: var(--font-display);
+  font-size: clamp(24px, 2.6vw, 32px);
+  letter-spacing: -.02em;
+  font-weight: 700;
+}
+
+.project-role {
+  font-size: 14.5px;
+  color: var(--text-faint);
+  margin: 4px 0 18px;
+}
+
+.project-body p + p { margin-top: 14px; }
+.project-body p { color: var(--text-dim); }
+.project-body strong { color: var(--text); font-weight: 650; }
+
+.stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 22px;
+}
+.stack li {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  color: var(--text-dim);
+  background: var(--bg-sunk);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 4px 11px;
+}
+
+.project-links { display: flex; gap: 22px; margin-top: 24px; }
+.project-links a {
+  color: var(--accent);
+  font-weight: 550;
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 2px;
+}
+.project-links a:hover { color: var(--accent-dark); }
+
+/* ------------------------------------------------------------ open source */
+
+.figures {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 52px;
+}
+.figures li {
+  background: var(--surface);
+  padding: 26px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.figure {
+  font-family: var(--font-display);
+  font-size: clamp(34px, 4vw, 48px);
+  line-height: 1;
+  letter-spacing: -.03em;
+  font-weight: 700;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+.figure-label { font-size: 14px; color: var(--text-dim); }
+
+.oss-detail h3 {
+  font-size: 20px;
+  font-weight: 650;
+  letter-spacing: -.012em;
+  margin-bottom: 18px;
+}
+.oss-detail h3 + h3 { margin-top: 48px; }
+.muted { color: var(--text-faint); font-weight: 400; }
+
+.bullets { display: flex; flex-direction: column; gap: 14px; max-width: 76ch; }
+.bullets li {
+  position: relative;
+  padding-left: 22px;
+  color: var(--text-dim);
+}
+.bullets li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: .62em;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+.bullets strong { color: var(--text); font-weight: 650; }
+
+.repos { width: 100%; border-collapse: collapse; font-size: 15px; }
+.repos th, .repos td {
+  text-align: left;
+  padding: 13px 16px 13px 0;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+.repos thead th {
+  font-size: 12.5px;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: var(--text-faint);
+  font-weight: 600;
+}
+.repos tbody th { font-weight: 650; white-space: nowrap; }
+.repos td { color: var(--text-dim); }
+.repos td:nth-child(2) { font-variant-numeric: tabular-nums; width: 3.5rem; }
+
+/* --------------------------------------------------------------- parcours */
+
+.timeline { border-left: 2px solid var(--line); padding-left: 28px; }
+.timeline li { padding-bottom: 34px; position: relative; }
+.timeline li::before {
+  content: "";
+  position: absolute;
+  left: -35px;
+  top: 6px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 2px solid var(--line-strong);
+}
+.timeline li:first-child::before { border-color: var(--accent); background: var(--accent); }
+
+.when {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-faint);
+  margin-bottom: 6px;
+}
+.timeline h3 { font-size: 19px; font-weight: 650; letter-spacing: -.012em; }
+.where { font-size: 15px; color: var(--accent); margin: 2px 0 8px; }
+.timeline li > p:last-child { color: var(--text-dim); max-width: 62ch; }
+
+.skills { margin-top: 20px; padding-top: 40px; border-top: 1px solid var(--line); }
+.skills h3 { font-size: 19px; font-weight: 650; margin-bottom: 22px; }
+.skills dl {
+  display: grid;
+  grid-template-columns: minmax(140px, auto) 1fr;
+  gap: 14px 32px;
+}
+.skills dt { font-size: 14px; color: var(--text-faint); }
+.skills dd { margin: 0; color: var(--text-dim); }
+
+/* ---------------------------------------------------------------- contact */
+
+.section-contact { text-align: center; }
+.section-contact .section-title { border-bottom: 0; padding-bottom: 0; margin-bottom: 18px; }
+.contact-lede { color: var(--text-dim); font-size: 18px; margin-bottom: 32px; }
+.section-contact .links { justify-content: center; }
+
+/* ------------------------------------------------------------ pied de page */
+
+.foot {
+  border-top: 1px solid var(--line);
+  padding: 30px 28px 46px;
+  max-width: var(--page);
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--text-faint);
+}
+.foot a { color: var(--text-dim); text-underline-offset: 3px; }
+
+/* -------------------------------------------------------------- responsive */
+
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; }
+  .hero-photo { order: -1; }
+  .project, .project + .project { grid-template-columns: 1fr; }
+  .skills dl { grid-template-columns: 1fr; gap: 4px 0; }
+  .skills dt { margin-top: 12px; }
+}
+
+@media (max-width: 620px) {
+  body { font-size: 16px; }
+  .topbar { padding: 14px 18px; }
+  .topbar nav ul { gap: 16px; }
+  .topbar nav a { font-size: 14px; }
+  .hero, .section, .foot { padding-left: 18px; padding-right: 18px; }
+  .repos thead { display: none; }
+  .repos tbody th, .repos td { display: block; border: 0; padding: 2px 0; }
+  .repos tbody tr { display: block; padding: 14px 0; border-bottom: 1px solid var(--line); }
+  .repos td:nth-child(2)::before { content: "PR : "; color: var(--text-faint); }
+}
+
+/* Respecte le reglage systeme : ni defilement anime, ni transition. */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .001ms !important;
+    transition-duration: .001ms !important;
+  }
+}
+
+/* Ombre discrete sous la barre haute une fois qu'on a quitte le sommet
+   (classe posee par js/main.js). */
+.topbar.is-stuck { border-bottom: 1px solid var(--line); }

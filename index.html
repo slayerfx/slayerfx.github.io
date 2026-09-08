@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Louenn Penanc'hoat — Développeur Web Full-Stack</title>
+<meta name="description" content="Développeur web full-stack à Rennes. 41 pull requests mergées sur les bibliothèques open source PHPOffice. En recherche d'une alternance.">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Louenn Penanc'hoat — Développeur Web Full-Stack">
+<meta property="og:description" content="41 pull requests mergées sur les bibliothèques open source PHPOffice. En recherche d'une alternance à Rennes.">
+<meta property="og:image" content="https://slayerfx.github.io/img/onemorerep.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>L</text></svg>">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<a class="skip" href="#contenu">Aller au contenu</a>
+
+<header class="topbar">
+  <a class="mark" href="#accueil">LP</a>
+  <nav aria-label="Navigation principale">
+    <ul>
+      <li><a href="#projets">Projets</a></li>
+      <li><a href="#open-source">Open source</a></li>
+      <li><a href="#parcours">Parcours</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="contenu">
+
+  <!-- ------------------------------------------------------------- accroche -->
+  <section class="hero" id="accueil">
+    <div class="hero-text">
+      <p class="eyebrow">Développeur Web Full-Stack — Rennes</p>
+      <h1>Louenn<br>Penanc'hoat</h1>
+      <p class="lede">
+        Je rends le code plus sûr qu'il ne l'était. Onze semaines de stage sur les
+        bibliothèques open source <strong>PHPOffice</strong> : 41 pull requests mergées,
+        quatre formats de fichiers écrits, l'analyse statique montée de cinq niveaux.
+      </p>
+      <p class="seeking">
+        <strong>En recherche d'une alternance</strong> pour poursuivre en Bachelor
+        Développeur Web.
+      </p>
+
+      <ul class="links" aria-label="Mes liens">
+        <li><a class="btn btn-primary" href="https://github.com/slayerfx" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+        <li><a class="btn" href="https://www.linkedin.com/in/louenn-penanc-hoat-a49774216/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+        <li><a class="btn" href="mailto:louenn.p@gmail.com">louenn.p@gmail.com</a></li>
+      </ul>
+    </div>
+
+    <figure class="hero-photo">
+      <img src="img/portrait.png" alt="Portrait de Louenn Penanc'hoat" width="480" height="480">
+    </figure>
+  </section>
+
+  <!-- -------------------------------------------------------------- projets -->
+  <section class="section" id="projets">
+    <h2 class="section-title">Projets</h2>
+
+    <article class="project">
+      <div class="project-media">
+        <img src="img/onemorerep.jpg" alt="Page d'accueil de OneMoreRep" width="897" height="706" loading="lazy">
+      </div>
+      <div class="project-body">
+        <h3>OneMoreRep</h3>
+        <p class="project-role">Site de musculation — projet de fin de formation, en production</p>
+        <p>
+          Bibliothèque d'exercices, création de programmes d'entraînement personnalisés,
+          calculateur de dépense énergétique journalière selon la formule de Mifflin-St Jeor,
+          et une carte des salles de sport alentour.
+        </p>
+        <p>
+          Architecture MVC écrite <strong>sans framework</strong> : routeur, contrôleurs,
+          managers, modèles. Authentification par session avec rôles utilisateur et
+          administrateur, mots de passe hachés, requêtes préparées PDO. Tests PHPUnit sur
+          la logique métier.
+        </p>
+        <ul class="stack">
+          <li>PHP 8</li><li>MySQL / PDO</li><li>JavaScript vanilla</li>
+          <li>Leaflet · Overpass API</li><li>PHPUnit</li><li>Composer</li>
+        </ul>
+        <p class="project-links">
+          <a href="https://onemorerep.infinityfree.io" target="_blank" rel="noopener noreferrer">Voir le site</a>
+          <a href="https://github.com/slayerfx/onemorerep" target="_blank" rel="noopener noreferrer">Code source</a>
+        </p>
+      </div>
+    </article>
+
+    <article class="project">
+      <div class="project-media">
+        <img src="img/soundgrab.png" alt="Interface de SoundGrab pendant un téléchargement" width="894" height="478" loading="lazy">
+      </div>
+      <div class="project-body">
+        <h3>SoundGrab</h3>
+        <p class="project-role">Téléchargeur audio à interface web locale — outil personnel</p>
+        <p>
+          Un morceau, une playlist, les likes ou un profil entier récupérés en MP3 taggé
+          avec pochette. Le serveur pousse sa progression en temps réel : étape en cours,
+          morceau traité, débit, temps restant.
+        </p>
+        <p>
+          Interface servie telle quelle — <strong>ni framework, ni build, ni CDN</strong> —
+          avec thèmes clair et sombre, navigation au clavier et annonces aux lecteurs
+          d'écran. En-tête <code>Host</code> validé contre le DNS rebinding, et
+          reconfiguration réservée à la machine hôte.
+        </p>
+        <ul class="stack">
+          <li>Python</li><li>FastAPI</li><li>Server-Sent Events</li>
+          <li>yt-dlp</li><li>pytest</li><li>GitHub Actions</li>
+        </ul>
+        <p class="project-links">
+          <a href="https://github.com/slayerfx/soundgrab" target="_blank" rel="noopener noreferrer">Code source</a>
+        </p>
+      </div>
+    </article>
+  </section>
+
+  <!-- ---------------------------------------------------------- open source -->
+  <section class="section" id="open-source">
+    <h2 class="section-title">Stage open source — PHPOffice</h2>
+    <p class="section-lede">
+      Onze semaines, de mai à juillet 2026, sur les bibliothèques PHP de
+      <a href="https://github.com/PHPOffice" target="_blank" rel="noopener noreferrer">PHPOffice</a>.
+      Chaque contribution a été relue et validée par le mainteneur du projet.
+    </p>
+
+    <ul class="figures">
+      <li><span class="figure">41</span><span class="figure-label">pull requests mergées</span></li>
+      <li><span class="figure">5</span><span class="figure-label">dépôts</span></li>
+      <li><span class="figure">4</span><span class="figure-label">formats de fichiers écrits</span></li>
+      <li><span class="figure">1&nbsp;→&nbsp;6</span><span class="figure-label">niveaux PHPStan gagnés</span></li>
+    </ul>
+
+    <div class="oss-detail">
+      <h3>PhpProject <span class="muted">— 32 pull requests</span></h3>
+      <ul class="bullets">
+        <li>
+          <strong>Quatre formats de fichiers implémentés, en lecture et en écriture</strong> —
+          Gnome Planner, MSPDI et ProjectLibre, plus un writer HTML qui rend un diagramme
+          de Gantt.
+        </li>
+        <li>
+          <strong>Analyse statique montée du niveau 1 au niveau 6</strong>, un niveau par
+          pull request, avec <code>declare(strict_types=1)</code> et le typage des
+          signatures sur l'ensemble du code source.
+        </li>
+        <li>
+          <strong>Intégration continue migrée de Travis vers GitHub Actions</strong> —
+          matrice de huit versions de PHP, job PHPStan, vérification des exemples,
+          couverture de code, Dependabot.
+        </li>
+        <li>
+          <strong>Documentation migrée</strong> de Sphinx vers MkDocs, puis vers ProperDocs.
+        </li>
+      </ul>
+
+      <h3>Les quatre autres dépôts <span class="muted">— 9 pull requests</span></h3>
+      <table class="repos">
+        <thead>
+          <tr><th scope="col">Dépôt</th><th scope="col">PR</th><th scope="col">Contributions</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">PHPPresentation</th><td>3</td>
+            <td>Couverture de code sous PHPUnit 10+, version minimale relevée, garde de version sur <code>imagedestroy()</code></td>
+          </tr>
+          <tr>
+            <th scope="row">Common</th><td>3</td>
+            <td>PHPStan porté au niveau 7, prise en charge de PHPStan 2.x, PHP 8.5 dans la matrice</td>
+          </tr>
+          <tr>
+            <th scope="row">PHPWord</th><td>2</td>
+            <td>Prise en charge de PHP 8.5, contrainte PHPUnit réparant la suite de tests</td>
+          </tr>
+          <tr>
+            <th scope="row">Math</th><td>1</td>
+            <td>PHP 8.5 ajouté à la matrice d'intégration continue</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ------------------------------------------------------------- parcours -->
+  <section class="section" id="parcours">
+    <h2 class="section-title">Parcours</h2>
+
+    <ol class="timeline">
+      <li>
+        <p class="when">2026</p>
+        <h3>Titre professionnel Développeur Web &amp; Mobile</h3>
+        <p class="where">3W Academy — RNCP niveau 5, obtenu le 10 août 2026</p>
+        <p>Développement full-stack, intégration d'API, workflow Git/GitHub et méthodes agiles.</p>
+      </li>
+      <li>
+        <p class="when">2021 – 2025</p>
+        <h3>Analyse de marchés financiers</h3>
+        <p class="where">Auto-formation</p>
+        <p>Lecture de graphiques et d'indicateurs, décision fondée sur les données, gestion du risque.</p>
+      </li>
+      <li>
+        <p class="when">2018 – 2021</p>
+        <h3>Employé commercial</h3>
+        <p class="where">Intermarché</p>
+      </li>
+      <li>
+        <p class="when">2016 – 2018</p>
+        <h3>Baccalauréat professionnel Vente</h3>
+        <p class="where">Lycée De La Salle — mention assez bien</p>
+      </li>
+    </ol>
+
+    <div class="skills">
+      <h3>Compétences</h3>
+      <dl>
+        <dt>Socle technique</dt>
+        <dd>HTML5, CSS3, JavaScript, PHP, Python, MySQL</dd>
+        <dt>Outils</dt>
+        <dd>Git, GitHub, Composer</dd>
+        <dt>Qualité &amp; intégration continue</dt>
+        <dd>PHPUnit, PHPStan, pytest, GitHub Actions, php-cs-fixer</dd>
+        <dt>Langues</dt>
+        <dd>Français — langue maternelle · Anglais — documentation technique et contributions open source</dd>
+      </dl>
+    </div>
+  </section>
+
+  <!-- -------------------------------------------------------------- contact -->
+  <section class="section section-contact" id="contact">
+    <h2 class="section-title">Contact</h2>
+    <p class="contact-lede">
+      Ouvert aux propositions d'alternance en développement web, sur Rennes et alentour.
+    </p>
+    <ul class="links">
+      <li><a class="btn btn-primary" href="mailto:louenn.p@gmail.com">louenn.p@gmail.com</a></li>
+      <li><a class="btn" href="https://github.com/slayerfx" target="_blank" rel="noopener noreferrer">github.com/slayerfx</a></li>
+      <li><a class="btn" href="https://www.linkedin.com/in/louenn-penanc-hoat-a49774216/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+    </ul>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <p>Louenn Penanc'hoat — Rennes</p>
+  <p>Site écrit à la main, sans framework. <a href="https://github.com/slayerfx/slayerfx.github.io" target="_blank" rel="noopener noreferrer">Code source</a>.</p>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
