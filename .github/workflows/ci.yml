@@ -1,0 +1,59 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+# Le site n'a rien a compiler : GitHub Pages sert les fichiers du depot tels
+# quels. Cette CI ne construit donc rien, elle verifie — validite du balisage,
+# scores Lighthouse, liens morts.
+
+jobs:
+  html:
+    name: Validité du HTML
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Valider index.html
+        run: npx --yes html-validate@9 index.html
+
+  lighthouse:
+    name: Lighthouse
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      # Les seuils sont ceux que la page atteint reellement : 100 partout, et
+      # 95 pour la performance, qui varie un peu selon la charge du runner.
+      - name: Auditer la page
+        run: npx --yes @lhci/cli@0.15.x autorun
+      - name: Conserver le rapport
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: rapport-lighthouse
+          path: .lighthouse/
+          retention-days: 14
+
+  liens:
+    name: Liens morts
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Vérifier les liens
+        uses: lycheeverse/lychee-action@v2
+        with:
+          # LinkedIn repond 999 aux robots et InfinityFree bloque tout client
+          # non navigateur : les exclure evite des echecs qui ne disent rien
+          # sur l'etat reel des liens.
+          args: >-
+            --no-progress
+            --exclude linkedin\.com
+            --exclude infinityfree\.io
+            index.html README.md
+          fail: true

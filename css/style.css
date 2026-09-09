@@ -35,7 +35,9 @@
   --line-strong: #cdc7bd;
   --text: #14161a;
   --text-dim: #55585f;
-  --text-faint: #86888f;
+  /* 4,85:1 sur --bg : le seuil AA (4,5) s'applique aussi aux textes
+     secondaires. L'ancienne valeur #86888f n'etait qu'a 3,37. */
+  --text-faint: #6b6e76;
   --accent: #1f3ce8;
   --accent-dark: #1730b8;
   --accent-soft: #e8ebfd;

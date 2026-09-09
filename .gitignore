@@ -2,3 +2,6 @@
 Thumbs.db
 .vscode/
 .idea/
+
+# Rapports Lighthouse produits localement
+.lighthouse/
