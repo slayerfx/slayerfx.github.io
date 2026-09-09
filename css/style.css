@@ -144,6 +144,12 @@ img { display: block; max-width: 100%; height: auto; }
 
 a { color: inherit; }
 
+/* La regle `[hidden] { display: none }` du navigateur vient de sa feuille par
+   defaut : n'importe quelle regle d'auteur posant un `display` la supplante,
+   quelle que soit sa specificite. Sans ce rappel, un element masque par
+   l'attribut resterait visible. */
+[hidden] { display: none !important; }
+
 code {
   font-family: var(--font-mono);
   font-size: .88em;
@@ -908,35 +914,46 @@ h1 {
   background-size: 100% 2px;
 }
 
-.contact-autres {
+.contact-action {
   display: flex;
-  justify-content: center;
-  gap: clamp(20px, 3vw, 40px);
-  margin-top: clamp(40px, 5vw, 64px);
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(20px, 2.6vw, 30px);
 }
 
-.contact-autres a {
-  position: relative;
-  font-size: 15px;
+.copier {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 38px;
+  padding: 0 18px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: transparent;
   color: var(--text-dim);
-  text-decoration: none;
-  padding-bottom: 3px;
-  transition: color .18s;
+  font-family: var(--font-ui);
+  font-size: 13.5px;
+  cursor: pointer;
+  transition: color .18s, border-color .18s, background .18s;
 }
-.contact-autres a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 1px;
-  background: currentColor;
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform .28s cubic-bezier(.22, .61, .36, 1);
+.copier:hover { color: var(--text); border-color: var(--text); }
+
+/* Le retour de la copie passe par le texte du bouton, pas par une bulle
+   flottante : il est ainsi annonce par les lecteurs d'ecran sans region
+   `live` supplementaire, et disparait tout seul. */
+.copier.est-copie {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: var(--accent-soft);
 }
-.contact-autres a:hover { color: var(--accent); }
-.contact-autres a:hover::after { transform: scaleX(1); }
+
+.contact-cadre {
+  margin-top: clamp(38px, 5vw, 58px);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: .04em;
+  color: var(--text-faint);
+}
 
 /* ------------------------------------------------------------ pied de page */
 
@@ -996,20 +1013,65 @@ h1 {
 .foot-liens a:hover { color: var(--accent); }
 .foot-liens a:hover::after { transform: scaleX(1); }
 
+/* --- colophon */
+
+.foot-colophon {
+  max-width: var(--page);
+  margin: 0 auto;
+  padding-top: clamp(26px, 3vw, 36px);
+  border-top: 1px solid var(--line);
+}
+
+.foot-sur {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin-bottom: clamp(18px, 2.4vw, 26px);
+}
+
+/* Quatre entrees libellees plutot qu'un paragraphe : ce sont des faits, ils se
+   parcourent. Chaque paire tient dans son propre `div`, ce qui permet de les
+   disposer en colonnes sans casser le couple terme / definition. */
+.colo {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: clamp(18px, 2.4vw, 30px) clamp(24px, 3vw, 44px);
+  margin: 0;
+}
+
+.colo dt {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin-bottom: 7px;
+}
+
+.colo dd {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--text-dim);
+}
+.colo dd a { color: var(--text); text-underline-offset: 3px; }
+.colo dd a:hover { color: var(--accent); }
+
 .foot-bas {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 20px;
   flex-wrap: wrap;
+  margin-top: clamp(30px, 4vw, 48px);
   padding-top: clamp(22px, 2.5vw, 30px);
   border-top: 1px solid var(--line);
-  font-size: 13.5px;
+  font-family: var(--font-ui);
+  font-size: 13px;
   color: var(--text-faint);
 }
-.colophon { max-width: 66ch; }
-.colophon a { color: var(--text-dim); text-underline-offset: 3px; }
-.colophon a:hover { color: var(--accent); }
 
 .haut {
   display: inline-flex;

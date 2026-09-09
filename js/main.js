@@ -165,3 +165,38 @@ if (accroche && survolPrecis && !REDUIT) {
     });
   }, { passive: true });
 }
+
+/* ------------------------------------------------- copie de l'adresse */
+
+/* Le bouton est ecrit `hidden` dans le HTML et n'apparait qu'ici : sans acces
+   au presse-papier — contexte non securise, navigateur ancien, permission
+   refusee — il ne rendrait aucun service, et un bouton qui ne fait rien est
+   pire que pas de bouton. Le lien `mailto:` a cote, lui, marche partout. */
+const copieur = document.querySelector('[data-copier]');
+
+if (copieur && navigator.clipboard?.writeText) {
+  const mot = copieur.querySelector('.copier-mot');
+  const initial = mot.textContent;
+  let retour;
+
+  copieur.hidden = false;
+
+  copieur.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(copieur.dataset.copier);
+    } catch {
+      // Permission refusee au moment du clic : on laisse le bouton tel quel,
+      // l'adresse reste selectionnable et le lien mailto reste disponible.
+      return;
+    }
+
+    mot.textContent = 'Adresse copiée';
+    copieur.classList.add('est-copie');
+
+    clearTimeout(retour);
+    retour = setTimeout(() => {
+      mot.textContent = initial;
+      copieur.classList.remove('est-copie');
+    }, 2200);
+  });
+}

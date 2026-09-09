@@ -313,12 +313,21 @@
         sur Rennes et alentour.
       </p>
 
-      <a class="contact-mail" href="mailto:louenn.p@gmail.com" data-reveal>louenn.p@gmail.com</a>
+      <div class="contact-action" data-reveal>
+        <a class="contact-mail" href="mailto:louenn.p@gmail.com">louenn.p@gmail.com</a>
 
-      <ul class="contact-autres" data-reveal>
-        <li><a href="https://github.com/slayerfx" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-        <li><a href="https://www.linkedin.com/in/louenn-penanc-hoat-a49774216/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
-      </ul>
+        <!-- Ouvrir un client de messagerie n'est pas toujours ce qu'on veut :
+             ce bouton evite d'avoir a selectionner l'adresse a la main. Il
+             n'apparait que si le navigateur sait ecrire dans le presse-papier,
+             c'est js/main.js qui le revele. -->
+        <button class="copier" type="button" data-copier="louenn.p@gmail.com" hidden>
+          <span class="copier-mot">Copier l'adresse</span>
+        </button>
+      </div>
+
+      <p class="contact-cadre">
+        Alternance — Bachelor Développeur Web · Rennes et alentour
+      </p>
     </div>
   </section>
 
@@ -338,11 +347,31 @@
     </nav>
   </div>
 
+  <div class="foot-colophon">
+    <p class="foot-sur">Colophon</p>
+
+    <dl class="colo">
+      <div>
+        <dt>Fait main</dt>
+        <dd>HTML, CSS et JavaScript. Aucun framework, aucune étape de build, aucune bibliothèque chargée par la page.</dd>
+      </div>
+      <div>
+        <dt>Polices</dt>
+        <dd>Bricolage Grotesque, Source Serif&nbsp;4 et Geist, embarquées dans le dépôt sous licence SIL&nbsp;OFL.</dd>
+      </div>
+      <div>
+        <dt>Vérifié</dt>
+        <dd>À chaque envoi : validité du HTML, contrastes AA sur les deux thèmes, Lighthouse, liens morts.</dd>
+      </div>
+      <div>
+        <dt>Hébergé</dt>
+        <dd>GitHub&nbsp;Pages — <a href="https://github.com/slayerfx/slayerfx.github.io" target="_blank" rel="noopener noreferrer">code source</a>.</dd>
+      </div>
+    </dl>
+  </div>
+
   <div class="foot-bas">
-    <p class="colophon">
-      Écrit à la main — HTML, CSS et JavaScript, sans framework ni étape de build.
-      <a href="https://github.com/slayerfx/slayerfx.github.io" target="_blank" rel="noopener noreferrer">Code source</a>
-    </p>
+    <p>© 2026 Louenn Penanc'hoat</p>
     <a class="haut" href="#accueil">
       <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 20V5M6 10.5 12 4.5l6 6"/></svg>
       Haut de page

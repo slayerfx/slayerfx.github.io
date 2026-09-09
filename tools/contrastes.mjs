@@ -23,6 +23,9 @@ const COUPLES = [
   ['--text-dim', '--surface'],
   ['--text-faint', '--bg-sunk'],
   ['--accent-fg', '--accent'],
+  // Ajoutes avec le colophon et le bouton de copie.
+  ['--text-dim', '--bg-sunk'],
+  ['--accent', '--accent-soft'],
 ];
 
 const luminance = (hex) => {
