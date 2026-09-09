@@ -28,8 +28,7 @@ const ANGLAIS = {
   /* --- accroche */
   'hero.sur': 'Full-Stack Web Developer — Rennes, France',
   'hero.lede': 'I leave code safer than I found it. Eleven weeks on the '
-             + '<strong>PHPOffice</strong> open source libraries: 41 pull requests '
-             + 'merged, four file formats written, static analysis raised five levels.',
+             + '<strong>PHPOffice</strong> open source libraries: 41 pull requests merged.',
   'hero.cherche': '<strong>Looking for an apprenticeship</strong> to continue into a '
                 + "Bachelor's in web development.",
   'hero.cue': 'See the projects',
