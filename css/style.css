@@ -868,9 +868,6 @@ h1 {
   padding-top: 5px;
 }
 
-/* Le jalon le plus recent est le seul en accent : il porte le diplome. */
-.timeline li:first-child .when { color: var(--accent); }
-
 .timeline h3 {
   font-size: clamp(19px, 2vw, 24px);
   font-weight: 650;
