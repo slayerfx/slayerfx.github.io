@@ -10,15 +10,16 @@
 
 /* ---------------------------------------------------------------- police */
 
-/* Bricolage Grotesque, sous-ensemble latin, embarquee dans le depot plutot
-   que chargee depuis un CDN. Fichier variable : un seul telechargement couvre
-   les graisses 400 a 800 et l'axe de taille optique, ce qui lui permet de
-   tenir aussi bien a 13 px qu'a 116.
-   SIL Open Font License 1.1 — voir fonts/OFL.txt */
+/* Fraunces, sous-ensemble latin, embarquee dans le depot plutot que chargee
+   depuis un CDN. Fichier variable : un seul telechargement couvre les graisses
+   400 a 900, l'axe de taille optique, et deux axes propres a cette police —
+   SOFT, qui arrondit les terminaisons, et WONK, qui active ses lettres les
+   plus caracteristiques.
+   SIL Open Font License 1.1 — voir fonts/OFL-fraunces.txt */
 @font-face {
-  font-family: "Bricolage Grotesque";
-  src: url("../fonts/bricolage-grotesque.woff2") format("woff2");
-  font-weight: 400 800;
+  font-family: "Fraunces";
+  src: url("../fonts/fraunces.woff2") format("woff2");
+  font-weight: 400 900;
   font-style: normal;
   /* `swap` : le texte s'affiche tout de suite dans la police systeme, la
      substitution se fait a l'arrivee du fichier. Rien n'est jamais invisible. */
@@ -58,7 +59,7 @@
   --page: 1120px;
   --gap: clamp(72px, 9vw, 128px);
 
-  --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
   --font-body: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
   --font-mono: ui-monospace, "Cascadia Mono", SFMono-Regular, Consolas, monospace;
 }
@@ -94,6 +95,14 @@
     --ombre-projet: 0 26px 60px -28px rgba(0, 0, 0, .72);
     --ombre-projet-survol: 0 36px 84px -30px rgba(0, 0, 0, .85);
   }
+}
+
+/* Axes propres a Fraunces. Ils ne sont pas couverts par les proprietes CSS
+   standard, contrairement a la graisse et a la taille optique, qu'on laisse
+   donc au navigateur. */
+h1, h2, h3,
+.section-title, .figure, .foot-nom, .contact-dire, .contact-mail, .project h3 {
+  font-variation-settings: "SOFT" 20, "WONK" 1;
 }
 
 /* ----------------------------------------------------------------- socle */

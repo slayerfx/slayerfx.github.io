@@ -7,3 +7,6 @@ Thumbs.db
 .lighthouse/
 .lighthouseci/
 
+
+# Image en attente de decision
+img/ChatGPT*
