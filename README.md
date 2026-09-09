@@ -61,6 +61,12 @@ L'attribut `lang` de la racine suit la langue affichée : c'est lui qui fait
 changer de voix un lecteur d'écran, et qui donne à la césure et aux guillemets
 les règles de la bonne langue.
 
+L'adresse porte la langue, de sorte qu'un lien vers la version anglaise soit
+partageable : [slayerfx.github.io/?lang=en](https://slayerfx.github.io/?lang=en).
+Au chargement, trois sources décident, dans cet ordre — le paramètre de
+l'adresse, parce qu'un lien envoyé doit l'emporter sur les préférences locales
+du destinataire ; le choix précédent ; puis la langue du navigateur.
+
 ## Polices
 
 Trois familles, chacune avec un rôle, toutes embarquées dans le dépôt sous

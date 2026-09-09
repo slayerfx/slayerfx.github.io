@@ -238,7 +238,7 @@ code {
   font-family: var(--font-display);
   font-weight: 700;
   letter-spacing: -.005em;
-  font-size: 15.5px;
+  font-size: 17.5px;
   white-space: nowrap;
 }
 
@@ -272,8 +272,8 @@ code {
   display: block;
   padding: 4px 0;
   font-family: var(--font-ui);
-  font-size: 13px;
-  letter-spacing: .015em;
+  font-size: 12px;
+  letter-spacing: .02em;
   color: var(--text-dim);
   text-decoration: none;
   white-space: nowrap;
@@ -997,90 +997,47 @@ h1 {
   padding: clamp(48px, 6vw, 78px) clamp(18px, 3vw, 40px) clamp(28px, 3vw, 40px);
 }
 
-.foot-bas {
-  max-width: var(--page);
-  margin: 0 auto;
-}
-
-/* --- colophon */
-
-.foot-colophon {
-  max-width: var(--page);
-  margin: 0 auto;
-}
-
-.foot-sur {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  color: var(--text-faint);
-  margin-bottom: clamp(18px, 2.4vw, 26px);
-}
-
-/* Quatre entrees libellees plutot qu'un paragraphe : ce sont des faits, ils se
-   parcourent. Chaque paire tient dans son propre `div`, ce qui permet de les
-   disposer en colonnes sans casser le couple terme / definition. */
-.colo {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: clamp(18px, 2.4vw, 30px) clamp(24px, 3vw, 44px);
-  margin: 0;
-}
-
-.colo dt {
-  font-family: var(--font-mono);
-  font-size: 11.5px;
-  letter-spacing: .09em;
-  text-transform: uppercase;
-  color: var(--text-faint);
-  margin-bottom: 7px;
-}
-
-.colo dd {
-  margin: 0;
-  font-size: 14px;
-  line-height: 1.55;
-  color: var(--text-dim);
-}
-.colo dd a { color: var(--text); text-underline-offset: 3px; }
-.colo dd a:hover { color: var(--accent); }
-
-.foot-bas {
+.foot-liens {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-  flex-wrap: wrap;
-  margin-top: clamp(30px, 4vw, 48px);
-  padding-top: clamp(22px, 2.5vw, 30px);
-  border-top: 1px solid var(--line);
-  font-family: var(--font-ui);
-  font-size: 13px;
-  color: var(--text-faint);
+  justify-content: center;
+  gap: clamp(22px, 3vw, 34px);
+  max-width: var(--page);
+  margin: 0 auto;
 }
 
-.haut {
+.foot-liens a {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  color: var(--text-dim);
-  text-decoration: none;
-  white-space: nowrap;
-  transition: color .18s;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  color: var(--text-faint);
+  transition: color .18s, background .18s, transform .18s;
 }
-.haut svg {
-  width: 15px;
-  height: 15px;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.7;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  transition: transform .25s;
+.foot-liens a:hover {
+  color: var(--accent);
+  background: var(--accent-soft);
+  transform: translateY(-2px);
 }
-.haut:hover { color: var(--accent); }
-.haut:hover svg { transform: translateY(-3px); }
+
+/* Les icones portent la couleur du texte, elles suivent donc le theme sans
+   qu'aucune regle ne les cite dans la palette sombre. */
+.foot-liens svg {
+  width: 21px;
+  height: 21px;
+  fill: currentColor;
+}
+
+.foot-bas {
+  max-width: var(--page);
+  margin: clamp(26px, 3vw, 34px) auto 0;
+  text-align: center;
+  font-family: var(--font-ui);
+  font-size: 12.5px;
+  color: var(--text-faint);
+}
 
 /* -------------------------------------------------------------- responsive */
 
@@ -1100,8 +1057,7 @@ h1 {
   body { font-size: 16px; }
   .topbar { padding: 14px 18px; }
   .topbar nav ul { gap: 16px; }
-  .topbar nav a { font-size: 13.5px; }
-  .foot-bas { align-items: flex-start; flex-direction: column; }
+  .topbar nav a { font-size: 12px; }
   .hero, .section, .foot { padding-left: 18px; padding-right: 18px; }
   .timeline li, .skills dl { grid-template-columns: 1fr; gap: 6px; }
   .when { padding-top: 0; }

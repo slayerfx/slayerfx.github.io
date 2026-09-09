@@ -264,6 +264,15 @@ if (groupeLangues && typeof ANGLAIS === 'object') {
       bouton.setAttribute('aria-pressed', String(bouton.dataset.langue === langue));
     }
 
+    // L'adresse porte la langue : sans cela, impossible d'envoyer un lien
+    // vers la version anglaise — le destinataire recevrait le francais.
+    // `replaceState` plutot que `pushState` : la bascule n'est pas une
+    // navigation, le bouton Retour ne doit pas l'annuler.
+    const url = new URL(window.location.href);
+    if (langue === 'fr') url.searchParams.delete('lang');
+    else url.searchParams.set('lang', langue);
+    history.replaceState(null, '', url);
+
     try {
       localStorage.setItem('langue', langue);
     } catch {
@@ -279,11 +288,16 @@ if (groupeLangues && typeof ANGLAIS === 'object') {
     if (bouton) appliquer(bouton.dataset.langue);
   });
 
-  /* Choix precedent, sinon la langue du navigateur, sinon le francais. */
-  let depart = 'fr';
-  try {
-    depart = localStorage.getItem('langue') ?? '';
-  } catch { /* stockage indisponible */ }
+  /* Trois sources, dans cet ordre : l'adresse, parce qu'un lien envoye doit
+     l'emporter sur les preferences locales du destinataire ; le choix
+     precedent ; puis la langue du navigateur. */
+  let depart = new URLSearchParams(window.location.search).get('lang');
+
+  if (depart !== 'fr' && depart !== 'en') {
+    try {
+      depart = localStorage.getItem('langue');
+    } catch { depart = null; }
+  }
 
   if (depart !== 'fr' && depart !== 'en') {
     depart = navigator.language?.startsWith('fr') === false ? 'en' : 'fr';
