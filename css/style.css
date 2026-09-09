@@ -39,6 +39,18 @@
   font-display: swap;
 }
 
+/* Geist pour l'interface — la navigation et les boutons. Une grotesque
+   neutre et un peu technique : elle ne cherche pas a etre lue longtemps, elle
+   sert a reperer. Sous-ensemble latin, 16 Ko.
+   SIL Open Font License 1.1 — voir fonts/OFL-geist.txt */
+@font-face {
+  font-family: "Geist";
+  src: url("../fonts/geist.woff2") format("woff2");
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* ---------------------------------------------------------------- jetons */
 
 :root {
@@ -74,6 +86,7 @@
 
   --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
   --font-body: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --font-ui: "Geist", "Segoe UI", system-ui, sans-serif;
   --font-mono: ui-monospace, "Cascadia Mono", SFMono-Regular, Consolas, monospace;
 }
 
@@ -166,9 +179,12 @@ code {
   position: sticky;
   top: 0;
   z-index: 20;
-  display: flex;
+  /* Trois colonnes de largeur egale de part et d'autre : la navigation tombe
+     au centre de la page quelle que soit la largeur de la marque ou du
+     selecteur de langue. Un simple `space-between` la decalerait. */
+  display: grid;
+  grid-template-columns: 1fr minmax(0, auto) 1fr;
   align-items: center;
-  justify-content: space-between;
   gap: 24px;
   padding: 16px clamp(18px, 3vw, 40px);
   background: color-mix(in srgb, var(--bg) 82%, transparent);
@@ -222,15 +238,39 @@ code {
 
 /* --- navigation */
 
-.topbar nav ul { display: flex; gap: clamp(14px, 2vw, 30px); }
+/* La colonne du milieu ne doit pas pousser la grille : sans `min-width: 0`,
+   une liste plus large que l'ecran elargit la page entiere. */
+.topbar nav { min-width: 0; }
+
+.topbar nav ul {
+  display: flex;
+  gap: clamp(14px, 2vw, 30px);
+  /* Sur un telephone, cinq entrees ne tiennent pas. Plutot que d'en cacher —
+     il faudrait alors dupliquer des liens et le reperage de section perdrait
+     sa cible — la liste defile. Le degrade a droite signale qu'il en reste. */
+  overflow-x: auto;
+  scrollbar-width: none;
+  overscroll-behavior-x: contain;
+}
+.topbar nav ul::-webkit-scrollbar { display: none; }
+
+@media (max-width: 860px) {
+  .topbar nav ul {
+    -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 26px), transparent);
+    mask-image: linear-gradient(90deg, #000 calc(100% - 26px), transparent);
+  }
+}
 
 .topbar nav a {
   position: relative;
   display: block;
   padding: 4px 0;
-  font-size: 14.5px;
+  font-family: var(--font-ui);
+  font-size: 13px;
+  letter-spacing: .015em;
   color: var(--text-dim);
   text-decoration: none;
+  white-space: nowrap;
   transition: color .18s;
 }
 
@@ -431,8 +471,11 @@ h1 {
   border-radius: 999px;
   background: var(--surface);
   color: var(--text);
-  font-size: 15px;
-  font-weight: 550;
+  /* Un bouton n'est pas du texte a lire : il porte la police d'interface,
+     comme la navigation. */
+  font-family: var(--font-ui);
+  font-size: 14.5px;
+  font-weight: 500;
   text-decoration: none;
   transition: border-color .18s, background .18s, color .18s, transform .18s;
 }
