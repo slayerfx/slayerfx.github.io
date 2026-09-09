@@ -7,6 +7,6 @@ Thumbs.db
 .lighthouse/
 .lighthouseci/
 
-
-# Image en attente de decision
+# Photo source, conservee hors depot : seules les versions traitees
+# (img/portrait*.webp) sont versionnees.
 img/ChatGPT*
