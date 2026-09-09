@@ -28,7 +28,7 @@
 </head>
 <body>
 
-<a class="skip" href="#contenu">Aller au contenu</a>
+<a class="skip" href="#contenu" data-i18n="skip">Aller au contenu</a>
 
 <header class="topbar">
   <!-- Jauge de lecture : purement indicative, donc masquee aux lecteurs
@@ -40,15 +40,25 @@
     <span class="mark-long">Louenn Penanc'hoat</span>
   </a>
 
-  <nav aria-label="Navigation principale">
+  <nav data-i18n-attr="nav.label|aria-label" aria-label="Navigation principale">
     <ul>
       <li><a href="#onemorerep">OneMoreRep</a></li>
       <li><a href="#soundgrab">SoundGrab</a></li>
-      <li><a href="#open-source">Open source</a></li>
-      <li><a href="#parcours">Parcours</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="#open-source" data-i18n="nav.oss">Open source</a></li>
+      <li><a href="#parcours" data-i18n="nav.parcours">Parcours</a></li>
+      <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
     </ul>
   </nav>
+
+  <!-- Deux boutons plutot qu'une bascule unique : la langue courante reste
+       lisible sans avoir a deviner ce que ferait un clic. `aria-pressed` dit
+       laquelle est active. Le groupe n'apparait que si le script tourne —
+       sans lui, la page reste en francais et un bouton mort serait pire. -->
+  <div class="langues" role="group" data-i18n-attr="lang.label|aria-label" aria-label="Langue du site" hidden>
+    <button type="button" class="lng" data-langue="fr" lang="fr" aria-pressed="true">FR</button>
+    <span class="lng-sep" aria-hidden="true">/</span>
+    <button type="button" class="lng" data-langue="en" lang="en" aria-pressed="false">EN</button>
+  </div>
 </header>
 
 <main id="contenu">
@@ -77,7 +87,7 @@
     </picture>
 
     <div class="hero-inner">
-      <p class="eyebrow" data-reveal>Développeur Web Full-Stack — Rennes</p>
+      <p class="eyebrow" data-i18n="hero.sur" data-reveal>Développeur Web Full-Stack — Rennes</p>
 
       <h1 data-reveal>
         <span class="nom-ligne">Louenn</span>
@@ -86,13 +96,13 @@
 
       <div class="hero-bas">
         <div class="hero-dire">
-          <p class="lede" data-reveal>
+          <p class="lede" data-i18n="hero.lede" data-reveal>
             Je rends le code plus sûr qu'il ne l'était. Onze semaines de stage sur
             les bibliothèques open source <strong>PHPOffice</strong> : 41 pull
             requests mergées, quatre formats de fichiers écrits, l'analyse statique
             montée de cinq niveaux.
           </p>
-          <p class="seeking" data-reveal>
+          <p class="seeking" data-i18n="hero.cherche" data-reveal>
             <strong>En recherche d'une alternance</strong> pour poursuivre en
             Bachelor Développeur Web.
           </p>
@@ -107,7 +117,7 @@
     </div>
 
     <a class="cue" href="#projets" data-reveal>
-      <span>Voir les projets</span>
+      <span data-i18n="hero.cue">Voir les projets</span>
       <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
         <path d="M12 4v15M6 13.5 12 19.5 18 13.5"/>
       </svg>
@@ -116,7 +126,7 @@
 
   <!-- -------------------------------------------------------------- projets -->
   <section class="section" id="projets">
-    <h2 class="section-title" data-reveal>Projets</h2>
+    <h2 class="section-title" data-i18n="projets.titre" data-reveal>Projets</h2>
 
     <article class="project" id="onemorerep" data-reveal>
       <a class="project-media" href="https://onemorerep.infinityfree.io" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true">
@@ -125,13 +135,13 @@
       <div class="project-body">
         <p class="project-num" aria-hidden="true">01</p>
         <h3>OneMoreRep</h3>
-        <p class="project-role">Site de musculation — projet de fin de formation, en production</p>
-        <p>
+        <p class="project-role" data-i18n="omr.role">Site de musculation — projet de fin de formation, en production</p>
+        <p data-i18n="omr.p1">
           Bibliothèque d'exercices, création de programmes d'entraînement personnalisés,
           calculateur de dépense énergétique journalière selon la formule de Mifflin-St Jeor,
           et une carte des salles de sport alentour.
         </p>
-        <p>
+        <p data-i18n="omr.p2">
           Architecture MVC écrite <strong>sans framework</strong> : routeur, contrôleurs,
           managers, modèles. Authentification par session avec rôles utilisateur et
           administrateur, mots de passe hachés, requêtes préparées PDO. Tests PHPUnit sur
@@ -142,8 +152,8 @@
           <li>Leaflet · Overpass API</li><li>PHPUnit</li><li>Composer</li>
         </ul>
         <p class="project-links">
-          <a href="https://onemorerep.infinityfree.io" target="_blank" rel="noopener noreferrer">Voir le site</a>
-          <a href="https://github.com/slayerfx/onemorerep" target="_blank" rel="noopener noreferrer">Code source</a>
+          <a href="https://onemorerep.infinityfree.io" target="_blank" rel="noopener noreferrer" data-i18n="lien.site">Voir le site</a>
+          <a href="https://github.com/slayerfx/onemorerep" target="_blank" rel="noopener noreferrer" data-i18n="lien.code">Code source</a>
         </p>
       </div>
     </article>
@@ -155,13 +165,13 @@
       <div class="project-body">
         <p class="project-num" aria-hidden="true">02</p>
         <h3>SoundGrab</h3>
-        <p class="project-role">Téléchargeur audio à interface web locale — outil personnel</p>
-        <p>
+        <p class="project-role" data-i18n="sg.role">Téléchargeur audio à interface web locale — outil personnel</p>
+        <p data-i18n="sg.p1">
           Un morceau, une playlist, les likes ou un profil entier récupérés en MP3 taggé
           avec pochette. Le serveur pousse sa progression en temps réel : étape en cours,
           morceau traité, débit, temps restant.
         </p>
-        <p>
+        <p data-i18n="sg.p2">
           Interface servie telle quelle — <strong>ni framework, ni build, ni CDN</strong> —
           avec thèmes clair et sombre, navigation au clavier et annonces aux lecteurs
           d'écran. En-tête <code>Host</code> validé contre le DNS rebinding, et
@@ -172,7 +182,7 @@
           <li>yt-dlp</li><li>pytest</li><li>GitHub Actions</li>
         </ul>
         <p class="project-links">
-          <a href="https://github.com/slayerfx/soundgrab" target="_blank" rel="noopener noreferrer">Code source</a>
+          <a href="https://github.com/slayerfx/soundgrab" target="_blank" rel="noopener noreferrer" data-i18n="lien.code">Code source</a>
         </p>
       </div>
     </article>
@@ -180,67 +190,67 @@
 
   <!-- ---------------------------------------------------------- open source -->
   <section class="section" id="open-source">
-    <h2 class="section-title" data-reveal>Stage open source — PHPOffice</h2>
-    <p class="section-lede" data-reveal>
+    <h2 class="section-title" data-i18n="oss.titre" data-reveal>Stage open source — PHPOffice</h2>
+    <p class="section-lede" data-i18n="oss.lede" data-reveal>
       Onze semaines, de mai à juillet 2026, sur les bibliothèques PHP de
       <a href="https://github.com/PHPOffice" target="_blank" rel="noopener noreferrer">PHPOffice</a>.
       Chaque contribution a été relue et validée par le mainteneur du projet.
     </p>
 
     <ul class="figures" data-reveal-group>
-      <li data-reveal><span class="figure" data-count="41">41</span><span class="figure-label">pull requests mergées</span></li>
-      <li data-reveal><span class="figure" data-count="5">5</span><span class="figure-label">dépôts</span></li>
-      <li data-reveal><span class="figure" data-count="4">4</span><span class="figure-label">formats de fichiers écrits</span></li>
-      <li data-reveal><span class="figure">1&nbsp;→&nbsp;6</span><span class="figure-label">niveaux PHPStan gagnés</span></li>
+      <li data-reveal><span class="figure" data-count="41">41</span><span class="figure-label" data-i18n="fig.pr">pull requests mergées</span></li>
+      <li data-reveal><span class="figure" data-count="5">5</span><span class="figure-label" data-i18n="fig.depots">dépôts</span></li>
+      <li data-reveal><span class="figure" data-count="4">4</span><span class="figure-label" data-i18n="fig.formats">formats de fichiers écrits</span></li>
+      <li data-reveal><span class="figure">1&nbsp;→&nbsp;6</span><span class="figure-label" data-i18n="fig.phpstan">niveaux PHPStan gagnés</span></li>
     </ul>
 
     <div class="oss-detail">
       <div class="oss-principal">
-      <h3>PhpProject <span class="muted">— 32 pull requests</span></h3>
+      <h3>PhpProject <span class="muted" data-i18n="oss.pr32">— 32 pull requests</span></h3>
       <ul class="bullets" data-reveal-group>
         <li data-reveal>
-          <strong>Quatre formats de fichiers implémentés, en lecture et en écriture</strong> —
+          <strong data-i18n="puce1.t">Quatre formats de fichiers implémentés, en lecture et en écriture</strong> —
           Gnome Planner, MSPDI et ProjectLibre, plus un writer HTML qui rend un diagramme
           de Gantt.
         </li>
         <li data-reveal>
-          <strong>Analyse statique montée du niveau 1 au niveau 6</strong>, un niveau par
+          <strong data-i18n="puce2.t">Analyse statique montée du niveau 1 au niveau 6</strong>, un niveau par
           pull request, avec <code>declare(strict_types=1)</code> et le typage des
           signatures sur l'ensemble du code source.
         </li>
         <li data-reveal>
-          <strong>Intégration continue migrée de Travis vers GitHub Actions</strong> —
+          <strong data-i18n="puce3.t">Intégration continue migrée de Travis vers GitHub Actions</strong> —
           matrice de huit versions de PHP, job PHPStan, vérification des exemples,
           couverture de code, Dependabot.
         </li>
         <li data-reveal>
-          <strong>Documentation migrée</strong> de Sphinx vers MkDocs, puis vers ProperDocs.
+          <strong data-i18n="puce4.t">Documentation migrée</strong> <span data-i18n="puce4.s">de Sphinx vers MkDocs, puis vers ProperDocs.</span>
         </li>
       </ul>
 
       </div>
 
-      <h3 class="oss-secondaire">Les quatre autres dépôts <span class="muted">— 9 pull requests</span></h3>
+      <h3 class="oss-secondaire"><span data-i18n="oss.autres">Les quatre autres dépôts</span> <span class="muted" data-i18n="oss.pr9">— 9 pull requests</span></h3>
       <table class="repos" data-reveal>
         <thead>
-          <tr><th scope="col">Dépôt</th><th scope="col">PR</th><th scope="col">Contributions</th></tr>
+          <tr><th scope="col" data-i18n="tab.depot">Dépôt</th><th scope="col">PR</th><th scope="col" data-i18n="tab.contrib">Contributions</th></tr>
         </thead>
         <tbody>
           <tr>
             <th scope="row">PHPPresentation</th><td>3</td>
-            <td>Couverture de code sous PHPUnit 10+, version minimale relevée, garde de version sur <code>imagedestroy()</code></td>
+            <td data-i18n="tab.pres">Couverture de code sous PHPUnit 10+, version minimale relevée, garde de version sur <code>imagedestroy()</code></td>
           </tr>
           <tr>
             <th scope="row">Common</th><td>3</td>
-            <td>PHPStan porté au niveau 7, prise en charge de PHPStan 2.x, PHP 8.5 dans la matrice</td>
+            <td data-i18n="tab.common">PHPStan porté au niveau 7, prise en charge de PHPStan 2.x, PHP 8.5 dans la matrice</td>
           </tr>
           <tr>
             <th scope="row">PHPWord</th><td>2</td>
-            <td>Prise en charge de PHP 8.5, contrainte PHPUnit réparant la suite de tests</td>
+            <td data-i18n="tab.word">Prise en charge de PHP 8.5, contrainte PHPUnit réparant la suite de tests</td>
           </tr>
           <tr>
             <th scope="row">Math</th><td>1</td>
-            <td>PHP 8.5 ajouté à la matrice d'intégration continue</td>
+            <td data-i18n="tab.math">PHP 8.5 ajouté à la matrice d'intégration continue</td>
           </tr>
         </tbody>
       </table>
@@ -249,52 +259,52 @@
 
   <!-- ------------------------------------------------------------- parcours -->
   <section class="section" id="parcours">
-    <h2 class="section-title" data-reveal>Parcours</h2>
+    <h2 class="section-title" data-i18n="parcours.titre" data-reveal>Parcours</h2>
 
     <ol class="timeline" data-reveal-group>
       <li data-reveal>
         <p class="when">2026</p>
         <div class="jalon">
-        <h3>Titre professionnel Développeur Web &amp; Mobile</h3>
-        <p class="where">3W Academy — RNCP niveau 5, obtenu le 10 août 2026</p>
-        <p>Développement full-stack, intégration d'API, workflow Git/GitHub et méthodes agiles.</p>
+        <h3 data-i18n="p1.t">Titre professionnel Développeur Web &amp; Mobile</h3>
+        <p class="where" data-i18n="p1.o">3W Academy — RNCP niveau 5, obtenu le 10 août 2026</p>
+        <p data-i18n="p1.d">Développement full-stack, intégration d'API, workflow Git/GitHub et méthodes agiles.</p>
         </div>
       </li>
       <li data-reveal>
         <p class="when">2021 – 2025</p>
         <div class="jalon">
-        <h3>Analyse de marchés financiers</h3>
-        <p class="where">Auto-formation</p>
-        <p>Lecture de graphiques et d'indicateurs, décision fondée sur les données, gestion du risque.</p>
+        <h3 data-i18n="p2.t">Analyse de marchés financiers</h3>
+        <p class="where" data-i18n="p2.o">Auto-formation</p>
+        <p data-i18n="p2.d">Lecture de graphiques et d'indicateurs, décision fondée sur les données, gestion du risque.</p>
         </div>
       </li>
       <li data-reveal>
         <p class="when">2018 – 2021</p>
         <div class="jalon">
-        <h3>Employé commercial</h3>
+        <h3 data-i18n="p3.t">Employé commercial</h3>
         <p class="where">Intermarché</p>
         </div>
       </li>
       <li data-reveal>
         <p class="when">2016 – 2018</p>
         <div class="jalon">
-        <h3>Baccalauréat professionnel Vente</h3>
-        <p class="where">Lycée De La Salle — mention assez bien</p>
+        <h3 data-i18n="p4.t">Baccalauréat professionnel Vente</h3>
+        <p class="where" data-i18n="p4.o">Lycée De La Salle — mention assez bien</p>
         </div>
       </li>
     </ol>
 
     <div class="skills" data-reveal>
-      <h3>Compétences</h3>
+      <h3 data-i18n="comp.titre">Compétences</h3>
       <dl>
-        <dt>Socle technique</dt>
+        <dt data-i18n="comp.socle">Socle technique</dt>
         <dd>HTML5, CSS3, JavaScript, PHP, Python, MySQL</dd>
-        <dt>Outils</dt>
+        <dt data-i18n="comp.outils">Outils</dt>
         <dd>Git, GitHub, Composer</dd>
-        <dt>Qualité &amp; intégration continue</dt>
+        <dt data-i18n="comp.qualite">Qualité &amp; intégration continue</dt>
         <dd>PHPUnit, PHPStan, pytest, GitHub Actions, php-cs-fixer</dd>
-        <dt>Langues</dt>
-        <dd>Français — langue maternelle · Anglais — documentation technique et contributions open source</dd>
+        <dt data-i18n="comp.langues">Langues</dt>
+        <dd data-i18n="comp.langues.d">Français — langue maternelle · Anglais — documentation technique et contributions open source</dd>
       </dl>
     </div>
   </section>
@@ -306,9 +316,9 @@
     <div class="contact-decor" aria-hidden="true"><span class="halo halo-c"></span></div>
 
     <div class="contact-inner">
-      <p class="contact-sur" data-reveal>Contact</p>
+      <p class="contact-sur" data-i18n="contact.sur" data-reveal>Contact</p>
 
-      <p class="contact-dire" data-reveal>
+      <p class="contact-dire" data-i18n="contact.dire" data-reveal>
         Ouvert aux propositions d'<strong>alternance en développement web</strong>,
         sur Rennes et alentour.
       </p>
@@ -321,11 +331,11 @@
              n'apparait que si le navigateur sait ecrire dans le presse-papier,
              c'est js/main.js qui le revele. -->
         <button class="copier" type="button" data-copier="louenn.p@gmail.com" hidden>
-          <span class="copier-mot">Copier l'adresse</span>
+          <span class="copier-mot" data-i18n="contact.copier">Copier l'adresse</span>
         </button>
       </div>
 
-      <p class="contact-cadre">
+      <p class="contact-cadre" data-i18n="contact.cadre">
         Alternance — Bachelor Développeur Web · Rennes et alentour
       </p>
     </div>
@@ -337,10 +347,10 @@
   <div class="foot-inner">
     <div class="foot-mot">
       <p class="foot-nom">Louenn Penanc'hoat</p>
-      <p class="foot-role">Développeur web full-stack — Rennes</p>
+      <p class="foot-role" data-i18n="foot.role">Développeur web full-stack — Rennes</p>
     </div>
 
-    <nav class="foot-liens" aria-label="Liens de contact">
+    <nav class="foot-liens" data-i18n-attr="foot.label|aria-label" aria-label="Liens de contact">
       <a href="https://github.com/slayerfx" target="_blank" rel="noopener noreferrer">GitHub</a>
       <a href="https://www.linkedin.com/in/louenn-penanc-hoat-a49774216/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
       <a href="mailto:louenn.p@gmail.com">Email</a>
@@ -348,24 +358,24 @@
   </div>
 
   <div class="foot-colophon">
-    <p class="foot-sur">Colophon</p>
+    <p class="foot-sur" data-i18n="foot.colophon">Colophon</p>
 
     <dl class="colo">
       <div>
-        <dt>Fait main</dt>
-        <dd>HTML, CSS et JavaScript. Aucun framework, aucune étape de build, aucune bibliothèque chargée par la page.</dd>
+        <dt data-i18n="colo.main">Fait main</dt>
+        <dd data-i18n="colo.main.d">HTML, CSS et JavaScript. Aucun framework, aucune étape de build, aucune bibliothèque chargée par la page.</dd>
       </div>
       <div>
-        <dt>Polices</dt>
-        <dd>Bricolage Grotesque, Source Serif&nbsp;4 et Geist, embarquées dans le dépôt sous licence SIL&nbsp;OFL.</dd>
+        <dt data-i18n="colo.polices">Polices</dt>
+        <dd data-i18n="colo.polices.d">Bricolage Grotesque, Source Serif&nbsp;4 et Geist, embarquées dans le dépôt sous licence SIL&nbsp;OFL.</dd>
       </div>
       <div>
-        <dt>Vérifié</dt>
-        <dd>À chaque envoi : validité du HTML, contrastes AA sur les deux thèmes, Lighthouse, liens morts.</dd>
+        <dt data-i18n="colo.verifie">Vérifié</dt>
+        <dd data-i18n="colo.verifie.d">À chaque envoi : validité du HTML, contrastes AA sur les deux thèmes, Lighthouse, liens morts.</dd>
       </div>
       <div>
-        <dt>Hébergé</dt>
-        <dd>GitHub&nbsp;Pages — <a href="https://github.com/slayerfx/slayerfx.github.io" target="_blank" rel="noopener noreferrer">code source</a>.</dd>
+        <dt data-i18n="colo.heberge">Hébergé</dt>
+        <dd data-i18n="colo.heberge.d">GitHub&nbsp;Pages — <a href="https://github.com/slayerfx/slayerfx.github.io" target="_blank" rel="noopener noreferrer">code source</a>.</dd>
       </div>
     </dl>
   </div>
@@ -374,11 +384,14 @@
     <p>© 2026 Louenn Penanc'hoat</p>
     <a class="haut" href="#accueil">
       <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 20V5M6 10.5 12 4.5l6 6"/></svg>
-      Haut de page
+      <span data-i18n="foot.haut">Haut de page</span>
     </a>
   </div>
 </footer>
 
+<!-- Le dictionnaire anglais avant le script : main.js le consulte au
+     chargement si un choix de langue est deja enregistre. -->
+<script src="js/anglais.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>

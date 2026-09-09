@@ -176,7 +176,6 @@ const copieur = document.querySelector('[data-copier]');
 
 if (copieur && navigator.clipboard?.writeText) {
   const mot = copieur.querySelector('.copier-mot');
-  const initial = mot.textContent;
   let retour;
 
   copieur.hidden = false;
@@ -190,7 +189,12 @@ if (copieur && navigator.clipboard?.writeText) {
       return;
     }
 
-    mot.textContent = 'Adresse copiée';
+    // Le libelle courant est relu ici, et non au chargement : il a pu changer
+    // entre-temps si le visiteur est passe a l'anglais.
+    const initial = mot.textContent;
+    const anglais = document.documentElement.lang === 'en';
+
+    mot.textContent = anglais ? 'Address copied' : 'Adresse copiée';
     copieur.classList.add('est-copie');
 
     clearTimeout(retour);
@@ -199,4 +203,91 @@ if (copieur && navigator.clipboard?.writeText) {
       copieur.classList.remove('est-copie');
     }, 2200);
   });
+}
+
+/* --------------------------------------------------------------- langue */
+
+/* Le francais est ecrit dans index.html, l'anglais vit dans js/anglais.js.
+   Basculer consiste donc a remplacer le contenu des elements portant une cle,
+   et a restaurer l'original pour revenir — pas besoin de garder deux copies
+   du texte dans le document.
+
+   Le groupe de boutons est `hidden` dans le HTML : sans ce script, la page
+   reste en francais et n'affiche pas un selecteur qui ne repondrait pas. */
+const groupeLangues = document.querySelector('.langues');
+
+if (groupeLangues && typeof ANGLAIS === 'object') {
+  const html = document.documentElement;
+
+  /* Contenu francais d'origine, releve une fois avant toute substitution. */
+  const francais = new Map();
+  for (const el of document.querySelectorAll('[data-i18n]')) {
+    francais.set(el, el.innerHTML);
+  }
+
+  /* Meme principe pour les quelques attributs traduisibles, decrits sous la
+     forme « cle|attribut ». */
+  const attributs = [];
+  for (const el of document.querySelectorAll('[data-i18n-attr]')) {
+    const [cle, nom] = el.dataset.i18nAttr.split('|');
+    attributs.push({ el, cle, nom, fr: el.getAttribute(nom) });
+  }
+
+  const titreFr = document.title;
+  const metaDesc = document.querySelector('meta[name="description"]');
+  const descFr = metaDesc?.getAttribute('content');
+
+  const appliquer = (langue) => {
+    const en = langue === 'en';
+
+    for (const [el, fr] of francais) {
+      const cle = el.dataset.i18n;
+      // Une cle sans traduction garde le francais plutot que de vider le
+      // bloc : une phrase dans la mauvaise langue reste lisible, pas un trou.
+      el.innerHTML = en ? (ANGLAIS[cle] ?? fr) : fr;
+    }
+
+    for (const { el, cle, nom, fr } of attributs) {
+      el.setAttribute(nom, en ? (ANGLAIS[cle] ?? fr) : fr);
+    }
+
+    document.title = en ? (ANGLAIS['doc.titre'] ?? titreFr) : titreFr;
+    if (metaDesc) {
+      metaDesc.setAttribute('content', en ? (ANGLAIS['doc.desc'] ?? descFr) : descFr);
+    }
+
+    // `lang` sur la racine : c'est ce qui fait qu'un lecteur d'ecran change de
+    // voix, et que la cesure et les guillemets suivent la bonne langue.
+    html.setAttribute('lang', langue);
+
+    for (const bouton of groupeLangues.querySelectorAll('[data-langue]')) {
+      bouton.setAttribute('aria-pressed', String(bouton.dataset.langue === langue));
+    }
+
+    try {
+      localStorage.setItem('langue', langue);
+    } catch {
+      // Navigation privee ou stockage refuse : le choix ne survit pas au
+      // rechargement, le reste fonctionne.
+    }
+  };
+
+  groupeLangues.hidden = false;
+
+  groupeLangues.addEventListener('click', (e) => {
+    const bouton = e.target.closest('[data-langue]');
+    if (bouton) appliquer(bouton.dataset.langue);
+  });
+
+  /* Choix precedent, sinon la langue du navigateur, sinon le francais. */
+  let depart = 'fr';
+  try {
+    depart = localStorage.getItem('langue') ?? '';
+  } catch { /* stockage indisponible */ }
+
+  if (depart !== 'fr' && depart !== 'en') {
+    depart = navigator.language?.startsWith('fr') === false ? 'en' : 'fr';
+  }
+
+  if (depart === 'en') appliquer('en');
 }

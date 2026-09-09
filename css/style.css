@@ -297,6 +297,36 @@ code {
 .topbar nav a:hover { color: var(--text); }
 .topbar nav a:hover::after { transform: scaleX(1); }
 
+/* --- selecteur de langue */
+
+.langues {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  justify-self: end;
+}
+
+.lng {
+  padding: 4px 6px;
+  border: 0;
+  background: transparent;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  letter-spacing: .06em;
+  color: var(--text-faint);
+  cursor: pointer;
+  border-radius: 3px;
+  transition: color .18s;
+}
+.lng:hover { color: var(--text); }
+
+/* La langue active se distingue par la couleur d'accent, pas seulement par
+   une graisse : `aria-pressed` porte deja l'information pour les lecteurs
+   d'ecran, la couleur la rend visible. */
+.lng[aria-pressed="true"] { color: var(--accent); }
+
+.lng-sep { color: var(--line-strong); font-size: 11px; }
+
 /* Section en cours de lecture, posee par js/main.js. */
 .topbar nav a[aria-current="true"] { color: var(--accent); }
 .topbar nav a[aria-current="true"]::after { transform: scaleX(1); }
