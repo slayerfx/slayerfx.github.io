@@ -28,6 +28,10 @@
 /* ---------------------------------------------------------------- jetons */
 
 :root {
+  /* Aligne les elements dessines par le navigateur — barres de defilement
+     notamment — sur le theme affiche. */
+  color-scheme: light;
+
   --bg: #faf9f7;
   --bg-sunk: #f2f0ec;
   --surface: #ffffff;
@@ -39,8 +43,9 @@
      secondaires. L'ancienne valeur #86888f n'etait qu'a 3,37. */
   --text-faint: #6b6e76;
   --accent: #1f3ce8;
-  --accent-dark: #1730b8;
+  --accent-hover: #1730b8;
   --accent-soft: #e8ebfd;
+  --accent-fg: #ffffff;
 
   --page: 1120px;
   --gap: clamp(72px, 9vw, 128px);
@@ -48,6 +53,32 @@
   --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, -apple-system, sans-serif;
   --font-body: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
   --font-mono: ui-monospace, "Cascadia Mono", SFMono-Regular, Consolas, monospace;
+}
+
+/* Le site est concu en clair : c'est un choix, la plupart des portfolios sont
+   sombres. Mais un visiteur dont le systeme demande le sombre recoit cette
+   variante plutot qu'une page eblouissante. Seuls les jetons changent, aucune
+   forme ni aucun espacement.
+
+   Chaque couple a ete verifie : le contraste le plus faible de cette palette
+   est de 5,18:1, pour un seuil AA de 4,5. */
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+
+    --bg: #12110f;
+    --bg-sunk: #1a1917;
+    --surface: #191816;
+    --line: #2b2926;
+    --line-strong: #3d3a35;
+    --text: #f2f0ec;
+    --text-dim: #b0aca5;
+    --text-faint: #8f8b84;
+    --accent: #8ea2ff;
+    --accent-hover: #aab7ff;
+    --accent-soft: #1c2340;
+    --accent-fg: #0d0f1a;
+  }
 }
 
 /* ----------------------------------------------------------------- socle */
@@ -201,9 +232,9 @@ h1 {
 .btn-primary {
   background: var(--accent);
   border-color: var(--accent);
-  color: #fff;
+  color: var(--accent-fg);
 }
-.btn-primary:hover { background: var(--accent-dark); border-color: var(--accent-dark); }
+.btn-primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); }
 
 /* Le detourage de la photo a des bords imparfaits : un fond plein et un
    masque circulaire les absorbent. */
@@ -304,7 +335,7 @@ h1 {
   border-bottom: 1px solid currentColor;
   padding-bottom: 2px;
 }
-.project-links a:hover { color: var(--accent-dark); }
+.project-links a:hover { color: var(--accent-hover); }
 
 /* ------------------------------------------------------------ open source */
 

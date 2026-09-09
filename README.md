@@ -49,3 +49,8 @@ pendant quatorze jours.
 Lien d'évitement en premier élément focusable, structure de titres continue,
 contrastes conformes, et `prefers-reduced-motion` respecté — le défilement animé
 et les transitions se désactivent quand le système le demande.
+
+Le site est conçu en clair, mais suit `prefers-color-scheme` : un visiteur dont
+le système demande le sombre reçoit une variante dédiée. Seuls les jetons de
+couleur changent, aucune forme ni aucun espacement. Le contraste le plus faible
+de cette palette est de 5,18:1, pour un seuil AA de 4,5.
