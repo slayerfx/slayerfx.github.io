@@ -20,6 +20,21 @@ jobs:
       - name: Valider index.html
         run: npx --yes html-validate@9 index.html
 
+  contrastes:
+    name: Contrastes des deux palettes
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      # Lighthouse n'audite qu'un theme a la fois, et l'emuler en sombre
+      # demandait Puppeteer : 219 paquets et deux failles connues pour un site
+      # qui n'a aucune dependance. Ce script calcule les contrastes directement
+      # sur les jetons CSS, couvre les deux palettes, et ne depend de rien.
+      - name: Vérifier les contrastes
+        run: node tools/contrastes.mjs
+
   lighthouse:
     name: Lighthouse
     runs-on: ubuntu-latest
