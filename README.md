@@ -1,5 +1,7 @@
 # slayerfx.github.io
 
+[![CI](https://github.com/slayerfx/slayerfx.github.io/actions/workflows/ci.yml/badge.svg)](https://github.com/slayerfx/slayerfx.github.io/actions/workflows/ci.yml)
+
 Mon portfolio — [slayerfx.github.io](https://slayerfx.github.io)
 
 Une page, écrite à la main : HTML, CSS et JavaScript, **sans framework et sans
@@ -25,6 +27,22 @@ python -m http.server 8080
 ```
 
 Puis `http://127.0.0.1:8080`.
+
+## Intégration continue
+
+Le site n'a rien à compiler : GitHub Pages sert les fichiers du dépôt tels
+quels. La CI ne construit donc rien, elle **vérifie**, à chaque push :
+
+| Contrôle | Outil |
+|---|---|
+| Validité du balisage | `html-validate` |
+| Performance, accessibilité, bonnes pratiques, SEO | Lighthouse CI |
+| Liens morts | `lychee` |
+
+Les seuils Lighthouse ont été mesurés avant d'être inscrits : **100 en
+accessibilité, bonnes pratiques et SEO**, et 95 en performance pour absorber la
+variation de charge des runners. Le rapport complet est conservé en artefact
+pendant quatorze jours.
 
 ## Accessibilité
 
