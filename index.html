@@ -29,7 +29,15 @@
 <a class="skip" href="#contenu">Aller au contenu</a>
 
 <header class="topbar">
-  <a class="mark" href="#accueil">LP</a>
+  <!-- Jauge de lecture : purement indicative, donc masquee aux lecteurs
+       d'ecran, qui disposent de leurs propres reperes de position. -->
+  <div class="jauge" aria-hidden="true"><span></span></div>
+
+  <a class="mark" href="#accueil">
+    <span class="mark-court">LP</span>
+    <span class="mark-long">Louenn Penanc'hoat</span>
+  </a>
+
   <nav aria-label="Navigation principale">
     <ul>
       <li><a href="#projets">Projets</a></li>
@@ -42,7 +50,6 @@
 
 <main id="contenu">
 
-  <!-- ------------------------------------------------------------- accroche -->
   <!-- ------------------------------------------------------------- accroche -->
   <section class="hero" id="accueil" data-reveal-group>
     <!-- Décor : deux halos colorés et un grain. Purement présentationnel, donc
@@ -293,8 +300,29 @@
 </main>
 
 <footer class="foot">
-  <p>Louenn Penanc'hoat — Rennes</p>
-  <p>Site écrit à la main, sans framework. <a href="https://github.com/slayerfx/slayerfx.github.io" target="_blank" rel="noopener noreferrer">Code source</a>.</p>
+  <div class="foot-inner">
+    <div class="foot-mot">
+      <p class="foot-nom">Louenn Penanc'hoat</p>
+      <p class="foot-role">Développeur web full-stack — Rennes</p>
+    </div>
+
+    <nav class="foot-liens" aria-label="Liens de contact">
+      <a href="https://github.com/slayerfx" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://www.linkedin.com/in/louenn-penanc-hoat-a49774216/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="mailto:louenn.p@gmail.com">Email</a>
+    </nav>
+  </div>
+
+  <div class="foot-bas">
+    <p class="colophon">
+      Écrit à la main — HTML, CSS et JavaScript, sans framework ni étape de build.
+      <a href="https://github.com/slayerfx/slayerfx.github.io" target="_blank" rel="noopener noreferrer">Code source</a>
+    </p>
+    <a class="haut" href="#accueil">
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 20V5M6 10.5 12 4.5l6 6"/></svg>
+      Haut de page
+    </a>
+  </div>
 </footer>
 
 <script src="js/main.js"></script>

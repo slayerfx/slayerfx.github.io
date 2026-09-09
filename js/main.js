@@ -13,11 +13,72 @@ const REDUIT = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 /* ------------------------------------------------------------- barre haute */
 
 const topbar = document.querySelector('.topbar');
+const jauge = topbar.querySelector('.jauge span');
 
-const majBarre = () => topbar.classList.toggle('is-stuck', window.scrollY > 8);
+/* Un seul gestionnaire de defilement pour la barre et la jauge, et un seul
+   ecrivain par trame : le navigateur emet des dizaines d'evenements de
+   defilement par seconde, il est inutile de recalculer autant de fois. */
+let trameDemandee = false;
+
+function majBarre() {
+  topbar.classList.toggle('is-stuck', window.scrollY > 8);
+
+  const parcourable = document.documentElement.scrollHeight - window.innerHeight;
+  const lu = parcourable > 0 ? window.scrollY / parcourable : 0;
+  jauge.style.setProperty('--lu', Math.min(1, Math.max(0, lu)).toFixed(4));
+}
 
 majBarre();
-window.addEventListener('scroll', majBarre, { passive: true });
+
+window.addEventListener('scroll', () => {
+  if (trameDemandee) return;
+  trameDemandee = true;
+  requestAnimationFrame(() => {
+    majBarre();
+    trameDemandee = false;
+  });
+}, { passive: true });
+
+/* ------------------------------------------------- section en cours de lecture */
+
+/* La navigation marque la section qu'on est en train de lire. `aria-current`
+   plutot qu'une classe : l'information est alors portee par le balisage, donc
+   annoncee aux lecteurs d'ecran, et sert aussi de crochet de style. */
+const liens = new Map();
+for (const lien of topbar.querySelectorAll('nav a[href^="#"]')) {
+  const cible = document.querySelector(lien.getAttribute('href'));
+  if (cible) liens.set(cible, lien);
+}
+
+if (liens.size && 'IntersectionObserver' in window) {
+  const visibles = new Set();
+
+  const marquer = () => {
+    // La section retenue est la plus haute de celles actuellement traversees.
+    const courante = [...visibles].sort(
+      (a, b) => a.getBoundingClientRect().top - b.getBoundingClientRect().top,
+    )[0];
+
+    for (const [section, lien] of liens) {
+      if (section === courante) lien.setAttribute('aria-current', 'true');
+      else lien.removeAttribute('aria-current');
+    }
+  };
+
+  const veille = new IntersectionObserver((entrees) => {
+    for (const e of entrees) {
+      if (e.isIntersecting) visibles.add(e.target);
+      else visibles.delete(e.target);
+    }
+    marquer();
+  }, {
+    // Ne considere qu'une bande dans le tiers superieur de l'ecran : c'est la
+    // que se trouve ce qu'on lit reellement.
+    rootMargin: '-16% 0px -72% 0px',
+  });
+
+  for (const section of liens.keys()) veille.observe(section);
+}
 
 /* ----------------------------------------------------------- compteurs */
 
