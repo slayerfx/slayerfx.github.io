@@ -109,9 +109,8 @@ const ANGLAIS = {
   'contact.dire': 'Open to <strong>web development apprenticeship</strong> offers, '
                 + 'in and around Rennes.',
   'contact.copier': 'Copy the address',
+  'contact.label': 'Contact links',
+  'contact.mail': 'Email address',
   'contact.cadre': "Apprenticeship — Bachelor's in web development · Rennes and nearby",
 
-  /* --- pied de page */
-  'foot.label': 'Contact links',
-  'foot.mail': 'Email address',
 };

@@ -268,7 +268,6 @@ code {
 }
 
 .topbar nav a {
-  position: relative;
   display: block;
   padding: 4px 0;
   font-family: var(--font-ui);
@@ -283,22 +282,7 @@ code {
   transition: color .18s;
 }
 
-/* Soulignement qui se trace depuis la gauche, plutot qu'un simple changement
-   de couleur. */
-.topbar nav a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 1.5px;
-  background: currentColor;
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform .28s cubic-bezier(.22, .61, .36, 1);
-}
 .topbar nav a:hover { color: var(--text); }
-.topbar nav a:hover::after { transform: scaleX(1); }
 
 /* --- selecteur de langue */
 
@@ -330,9 +314,10 @@ code {
 
 .lng-sep { color: var(--line-strong); font-size: 11px; }
 
-/* Section en cours de lecture, posee par js/main.js. */
+/* Section en cours de lecture, posee par js/main.js. La couleur est le seul
+   marqueur visuel ; l'information reste portee par `aria-current`, donc
+   annoncee aux lecteurs d'ecran sans dependre de la couleur. */
 .topbar nav a[aria-current="true"] { color: var(--accent); }
-.topbar nav a[aria-current="true"]::after { transform: scaleX(1); }
 
 /* --------------------------------------------------------------- accroche */
 
@@ -961,37 +946,45 @@ h1 {
 }
 .contact-dire strong { color: var(--text); font-weight: 700; }
 
-/* L'adresse est l'action principale : elle est traitee comme un titre, pas
-   comme un lien de plus. */
-.contact-mail {
-  display: inline-block;
-  font-family: var(--font-display);
-  font-optical-sizing: auto;
-  font-size: clamp(26px, 5.4vw, 72px);
-  line-height: 1;
-  letter-spacing: -.038em;
-  font-weight: 700;
-  color: var(--accent);
-  text-decoration: none;
-  word-break: break-word;
-  padding-bottom: .08em;
-  background-image: linear-gradient(currentColor, currentColor);
-  background-repeat: no-repeat;
-  background-position: 0 100%;
-  background-size: 0% 2px;
-  transition: background-size .45s cubic-bezier(.22, .61, .36, 1), color .2s;
-}
-.contact-mail:hover,
-.contact-mail:focus-visible {
-  color: var(--accent-hover);
-  background-size: 100% 2px;
-}
-
 .contact-action {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: clamp(20px, 2.6vw, 30px);
+  gap: clamp(22px, 2.8vw, 32px);
+}
+
+/* Ces trois liens sont desormais l'action principale de la page : ils sont
+   dimensionnes en consequence, pas comme un rappel de pied de page. */
+.contact-liens {
+  display: flex;
+  align-items: center;
+  gap: clamp(18px, 2.6vw, 30px);
+}
+
+.contact-liens a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 62px;
+  height: 62px;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  color: var(--text-dim);
+  transition: color .18s, border-color .18s, background .18s, transform .18s;
+}
+.contact-liens a:hover {
+  color: var(--accent-fg);
+  background: var(--accent);
+  border-color: var(--accent);
+  transform: translateY(-3px);
+}
+
+/* Les icones prennent la couleur du texte : elles suivent le theme sans
+   qu'aucune regle ne les cite dans la palette sombre. */
+.contact-liens svg {
+  width: 26px;
+  height: 26px;
+  fill: currentColor;
 }
 
 .copier {
@@ -1028,56 +1021,6 @@ h1 {
   color: var(--text-faint);
 }
 
-/* ------------------------------------------------------------ pied de page */
-
-.foot {
-  background: var(--bg-sunk);
-  border-top: 1px solid var(--line);
-  padding: clamp(48px, 6vw, 78px) clamp(18px, 3vw, 40px) clamp(28px, 3vw, 40px);
-}
-
-.foot-liens {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: clamp(22px, 3vw, 34px);
-  max-width: var(--page);
-  margin: 0 auto;
-}
-
-.foot-liens a {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  color: var(--text-faint);
-  transition: color .18s, background .18s, transform .18s;
-}
-.foot-liens a:hover {
-  color: var(--accent);
-  background: var(--accent-soft);
-  transform: translateY(-2px);
-}
-
-/* Les icones portent la couleur du texte, elles suivent donc le theme sans
-   qu'aucune regle ne les cite dans la palette sombre. */
-.foot-liens svg {
-  width: 21px;
-  height: 21px;
-  fill: currentColor;
-}
-
-.foot-bas {
-  max-width: var(--page);
-  margin: clamp(26px, 3vw, 34px) auto 0;
-  text-align: center;
-  font-family: var(--font-ui);
-  font-size: 12.5px;
-  color: var(--text-faint);
-}
-
 /* -------------------------------------------------------------- responsive */
 
 @media (max-width: 900px) {
@@ -1095,7 +1038,7 @@ h1 {
   .topbar { padding: 14px 18px; }
   .topbar nav ul { gap: 16px; }
   .topbar nav a { font-size: 12px; }
-  .section, .foot { padding-left: 18px; padding-right: 18px; }
+  .section { padding-left: 18px; padding-right: 18px; }
   .timeline li, .skills dl { grid-template-columns: 1fr; gap: 6px; }
   .when { padding-top: 0; }
   .skills dt { margin-top: 14px; }
