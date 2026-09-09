@@ -112,8 +112,6 @@ const ANGLAIS = {
   'contact.cadre': "Apprenticeship — Bachelor's in web development · Rennes and nearby",
 
   /* --- pied de page */
-  'foot.role': 'Full-stack web developer — Rennes, France',
-  'foot.label': 'Contact links',
   'foot.colophon': 'Colophon',
   'foot.haut': 'Back to top',
 
