@@ -272,9 +272,9 @@ code {
   display: block;
   padding: 4px 0;
   font-family: var(--font-ui);
-  font-size: 12px;
-  /* 600 plutot que 700 : a cette taille, le gras plein epaissit les fûts au
-     point de fermer les contreformes du « a » et du « e ». */
+  /* La marque fait 17,5px : au-dela de 14 la navigation s'en rapproche trop et
+     la barre se met a plat, les deux blocs se disputant l'attention. */
+  font-size: 14px;
   font-weight: 600;
   letter-spacing: .02em;
   color: var(--text-dim);
@@ -1060,7 +1060,7 @@ h1 {
   body { font-size: 16px; }
   .topbar { padding: 14px 18px; }
   .topbar nav ul { gap: 16px; }
-  .topbar nav a { font-size: 12px; }
+  .topbar nav a { font-size: 13.5px; }
   .hero, .section, .foot { padding-left: 18px; padding-right: 18px; }
   .timeline li, .skills dl { grid-template-columns: 1fr; gap: 6px; }
   .when { padding-top: 0; }
