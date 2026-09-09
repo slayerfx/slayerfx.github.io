@@ -408,6 +408,10 @@ code {
 .hero-inner {
   position: relative;
   z-index: 1;
+  /* Occupe toute la hauteur utile du panneau : sans cela le bloc se centre,
+     et le portrait cale « en bas » s'arrete au bas du bloc, pas au bord du
+     panneau — il flottait alors, coupe net, au-dessus de 120px de vide. */
+  flex: 1;
   width: 100%;
   margin: 0 auto;
   padding: 0 clamp(26px, 4.5vw, 60px);
@@ -503,9 +507,12 @@ h1 {
   .hero-inner {
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
-    align-items: end;
+    align-items: stretch;
     column-gap: clamp(20px, 3vw, 44px);
   }
+  /* Le texte se centre dans la hauteur, le portrait descend au bord. */
+  .hero-texte { align-self: center; }
+  .hero-portrait { align-self: end; }
   .hero-portrait { display: block; }
   .hero-bas { flex-direction: column; align-items: flex-start; }
 }
@@ -550,11 +557,15 @@ h1 {
 
 /* --- invite a defiler */
 
+/* Cale en bas du panneau plutot que place dans le flux : sa marge y occupait
+   une centaine de pixels que le portrait ne pouvait pas franchir, et la photo
+   se retrouvait coupee net au-dessus du bord. */
 .cue {
-  position: relative;
+  position: absolute;
+  left: 50%;
+  bottom: clamp(18px, 2.2vh, 28px);
+  transform: translateX(-50%);
   z-index: 1;
-  align-self: center;
-  margin-top: clamp(48px, 7vw, 96px);
   display: inline-flex;
   align-items: center;
   gap: 10px;
@@ -622,7 +633,11 @@ h1 {
 }
 
 /* Un projet sur deux inverse ses colonnes : sans ca, deux cartes identiques
-   se succedent et la section devient un formulaire. */
+   se succedent et la section devient un formulaire. Le gabarit s'inverse
+   avec elles : sans cette ligne, la colonne large restait a gauche et
+   revenait donc au texte un projet sur deux — les captures n'avaient plus
+   la meme largeur d'un projet a l'autre. */
+.project:nth-of-type(even) { grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); }
 .project:nth-of-type(even) .project-media { grid-column: 2; grid-row: 1; }
 .project:nth-of-type(even) .project-body  { grid-column: 1; grid-row: 1; }
 
@@ -841,6 +856,9 @@ h1 {
   border-top: 1px solid var(--line);
 }
 .timeline li:last-child { border-bottom: 1px solid var(--line); }
+/* Le titre de section porte deja un filet ; celui du premier jalon en
+   dessinait un second juste en dessous, avec une bande vide entre les deux. */
+.timeline li:first-child { border-top: 0; padding-top: 0; }
 
 .when {
   font-family: var(--font-mono);
