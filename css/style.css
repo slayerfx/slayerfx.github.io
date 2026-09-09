@@ -250,7 +250,7 @@ code {
 
 .topbar nav ul {
   display: flex;
-  gap: clamp(14px, 2vw, 30px);
+  gap: clamp(14px, 1.9vw, 24px);
   /* Sur un telephone, cinq entrees ne tiennent pas. Plutot que d'en cacher —
      il faudrait alors dupliquer des liens et le reperage de section perdrait
      sa cible — la liste defile. Le degrade a droite signale qu'il en reste. */
@@ -272,10 +272,10 @@ code {
   display: block;
   padding: 4px 0;
   font-family: var(--font-ui);
-  /* La marque fait 17,5px : au-dela de 14 la navigation s'en rapproche trop et
-     la barre se met a plat, les deux blocs se disputant l'attention. */
-  font-size: 14px;
-  font-weight: 600;
+  /* Reglages releves sur le site de reference : Geist 12px, graisse normale,
+     0,24px d'interlettrage — soit .02em a cette taille. */
+  font-size: 12px;
+  font-weight: 400;
   letter-spacing: .02em;
   color: var(--text-dim);
   text-decoration: none;
@@ -428,6 +428,15 @@ code {
   padding: 0 clamp(26px, 4.5vw, 60px);
 }
 
+/* Conteneur de requete : le titre se dimensionne alors sur la largeur de
+   cette colonne, et non sur celle de la fenetre. C'est ce qui empeche
+   « Penanc'hoat » — un mot insecable, qui ne peut pas se couper — de deborder
+   sur le portrait quand la colonne se resserre. */
+.hero-texte {
+  min-width: 0;
+  container-type: inline-size;
+}
+
 .eyebrow {
   font-family: var(--font-mono);
   font-size: 13px;
@@ -440,10 +449,14 @@ code {
 h1 {
   font-family: var(--font-display);
   font-optical-sizing: auto;
-  /* Calibre pour un panneau, plus pour une bande pleine largeur. Le `min`
-     avec une valeur en `vh` fait retomber le corps sur un ecran bas, ou le
-     titre mangerait sinon toute la hauteur disponible. */
-  font-size: clamp(52px, min(10.5vw, 15.5vh), 140px);
+  /* Repli pour les navigateurs sans unites de conteneur : calibre sur la
+     fenetre, donc prudent. */
+  font-size: clamp(52px, 9vw, 112px);
+  /* `cqi` se lit sur la colonne de texte : le titre occupe toujours la meme
+     part de la place disponible, quelle que soit la largeur prise par le
+     portrait. Le `vh` le fait retomber sur un ecran bas, ou il mangerait
+     sinon toute la hauteur. */
+  font-size: clamp(52px, min(18cqi, 15vh), 140px);
   line-height: .84;
   letter-spacing: -.045em;
   font-weight: 700;
@@ -454,7 +467,7 @@ h1 {
 
 /* La seconde ligne est decalee : le nom cesse d'etre un bloc et devient une
    composition. */
-.nom-decale { margin-left: clamp(0px, 6vw, 96px); }
+.nom-decale { margin-left: clamp(0px, 5cqi, 56px); }
 
 .hero-bas {
   display: flex;
@@ -475,16 +488,16 @@ h1 {
    donc la deuxieme ligne du nom passe devant les cheveux. */
 .hero-portrait {
   display: none;
-  position: absolute;
-  inset: auto 0 0 0;
-  padding: 0 clamp(26px, 4.5vw, 60px);
-  justify-content: flex-end;
+  align-self: end;
+  /* Le panneau a un remplissage bas ; cette marge negative le compense pour
+     que la photo aille toucher le bord, ou l'angle arrondi la coupe. */
+  margin-bottom: calc(-1 * clamp(38px, 5vh, 64px));
   pointer-events: none;
 }
 
 .hero-portrait img {
   width: auto;
-  height: min(70vh, 640px);
+  height: min(60vh, 560px);
   object-fit: contain;
   object-position: bottom;
   /* Le detourage laisse un bord net ; cette ombre tres etalee redonne un peu
@@ -502,8 +515,14 @@ h1 {
    n'aurait plus de place. La requete `media` sur la <source> evite en plus de
    la telecharger. */
 @media (min-width: 1000px) {
-  .hero-portrait { display: flex; }
-  .hero-bas { max-width: 58%; flex-direction: column; align-items: flex-start; }
+  .hero-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
+    column-gap: clamp(20px, 3vw, 44px);
+  }
+  .hero-portrait { display: block; }
+  .hero-bas { flex-direction: column; align-items: flex-start; }
 }
 
 .lede {
@@ -1075,7 +1094,7 @@ h1 {
   body { font-size: 16px; }
   .topbar { padding: 14px 18px; }
   .topbar nav ul { gap: 16px; }
-  .topbar nav a { font-size: 13.5px; }
+  .topbar nav a { font-size: 12px; }
   .section, .foot { padding-left: 18px; padding-right: 18px; }
   .timeline li, .skills dl { grid-template-columns: 1fr; gap: 6px; }
   .when { padding-top: 0; }

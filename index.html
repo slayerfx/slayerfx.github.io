@@ -103,19 +103,8 @@
       <span class="grain"></span>
     </div>
 
-    <!-- Portrait detoure, cale en bas a droite. Il passe derriere le nom :
-         la deuxieme ligne du titre lui recouvre les cheveux, ce qui donne de
-         la profondeur au bloc. Charge seulement au-dela de 1000px de large. -->
-    <picture class="hero-portrait">
-      <source
-        media="(min-width: 1000px)"
-        type="image/webp"
-        srcset="img/portrait.webp 1x, img/portrait-2x.webp 2x">
-      <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-           alt="Louenn Penanc'hoat" width="480" height="785" decoding="async">
-    </picture>
-
     <div class="hero-inner">
+      <div class="hero-texte">
       <p class="eyebrow" data-i18n="hero.sur" data-reveal>Développeur Web Full-Stack — Rennes</p>
 
       <h1 data-reveal>
@@ -143,6 +132,20 @@
           <li><a class="btn" href="mailto:louenn.p@gmail.com">louenn.p@gmail.com</a></li>
         </ul>
       </div>
+      </div>
+
+    <!-- Portrait detoure. Il occupe sa propre colonne de la grille : c'est ce
+         qui garantit qu'il ne passera jamais sous le nom, quelle que soit la
+         taille de l'ecran. Il deborde sous le bord bas du panneau, ou
+         `overflow: hidden` le coupe. Charge seulement au-dela de 1000px. -->
+    <picture class="hero-portrait">
+      <source
+        media="(min-width: 1000px)"
+        type="image/webp"
+        srcset="img/portrait.webp 1x, img/portrait-2x.webp 2x">
+      <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+           alt="Louenn Penanc'hoat" width="480" height="785" decoding="async">
+    </picture>
     </div>
 
     <a class="cue" href="#projets" data-reveal>
