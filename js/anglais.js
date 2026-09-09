@@ -20,7 +20,6 @@ const ANGLAIS = {
   /* --- chrome */
   'skip': 'Skip to content',
   'nav.label': 'Main navigation',
-  'nav.portfolio': 'Portfolio',
   'nav.oss': 'Open source',
   'nav.parcours': 'Background',
   'nav.contact': 'Contact',
@@ -53,19 +52,6 @@ const ANGLAIS = {
   'sg.p1': 'A track, a playlist, your likes or a whole profile, fetched as tagged MP3 '
          + 'with artwork. The server streams its progress live: current step, track '
          + 'being processed, throughput, time remaining.',
-  'pf.titre': 'Portfolio',
-  'pf.role': 'This site — handwritten, no framework, no dependency',
-  'pf.p1': 'The page you are reading. A single HTML file, served as written by GitHub '
-         + 'Pages: no build step, no library loaded by the browser. Light and dark themes '
-         + 'following the system, bilingual content, and three variable typefaces bundled '
-         + 'in the repository.',
-  'pf.p2': 'Continuous integration checks four things on every push. The fourth is a '
-         + '<strong>forty-line script written for this site</strong> that computes contrast '
-         + 'directly from the colour tokens: Lighthouse audits one theme at a time, and '
-         + 'emulating the dark one required 219 packages for a site that has none. The '
-         + 'script caught a real defect Lighthouse missed — a grey at 4.48 against a '
-         + 'threshold of 4.5.',
-
   'sg.p2': 'The interface is served as written — <strong>no framework, no build step, '
          + 'no CDN</strong> — with light and dark themes, keyboard navigation and screen '
          + 'reader announcements. The <code>Host</code> header is validated against DNS '
