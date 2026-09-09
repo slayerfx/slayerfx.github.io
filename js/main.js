@@ -132,6 +132,18 @@ if (!REDUIT && 'IntersectionObserver' in window) {
   });
 
   document.querySelectorAll('[data-reveal]').forEach((el) => observateur.observe(el));
+
+  /* Filet de securite. Poser `opacity: 0` en attendant un evenement, c'est
+     parier que l'evenement arrivera : si l'observateur ne se declenche pas —
+     onglet en arriere-plan, moteur de rendu sans compositeur, capture
+     automatisee — la page reste blanche. Passe ce delai, tout est revele quoi
+     qu'il arrive. On perd l'animation, jamais le contenu. */
+  setTimeout(() => {
+    document.querySelectorAll('[data-reveal]:not(.is-visible)').forEach((el) => {
+      el.classList.add('is-visible');
+      el.querySelectorAll('[data-count]').forEach(compter);
+    });
+  }, 2500);
 }
 
 /* ------------------------------------------------------- halos de l'accroche */
