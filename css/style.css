@@ -51,6 +51,8 @@
   --halo-b: radial-gradient(circle, rgba(232, 108, 60, .15), transparent 68%);
   --grain-opacite: .34;
   --grain-melange: multiply;
+  --ombre-projet: 0 26px 60px -30px rgba(20, 22, 26, .34);
+  --ombre-projet-survol: 0 36px 80px -32px rgba(20, 22, 26, .42);
 
   --page: 1120px;
   --gap: clamp(72px, 9vw, 128px);
@@ -88,6 +90,8 @@
     --halo-b: radial-gradient(circle, rgba(255, 138, 84, .13), transparent 68%);
     --grain-opacite: .20;
     --grain-melange: overlay;
+    --ombre-projet: 0 26px 60px -28px rgba(0, 0, 0, .72);
+    --ombre-projet-survol: 0 36px 84px -30px rgba(0, 0, 0, .85);
   }
 }
 
@@ -392,42 +396,84 @@ h1 {
 
 .project {
   display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
-  gap: clamp(28px, 4vw, 56px);
-  align-items: start;
-  padding-bottom: clamp(48px, 6vw, 80px);
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  gap: clamp(32px, 5vw, 78px);
+  align-items: center;
+  padding-bottom: clamp(64px, 8vw, 118px);
 }
-.project + .project { border-top: 1px solid var(--line); padding-top: clamp(48px, 6vw, 80px); }
+
+/* Un projet sur deux inverse ses colonnes : sans ca, deux cartes identiques
+   se succedent et la section devient un formulaire. */
+.project:nth-of-type(even) .project-media { grid-column: 2; grid-row: 1; }
+.project:nth-of-type(even) .project-body  { grid-column: 1; grid-row: 1; }
+
+.project + .project {
+  border-top: 1px solid var(--line);
+  padding-top: clamp(64px, 8vw, 118px);
+}
+
+/* --- le visuel */
 
 .project-media {
-  border: 1px solid var(--line);
-  border-radius: 10px;
+  display: block;
+  border-radius: 16px;
   overflow: hidden;
+  border: 1px solid var(--line);
   background: var(--surface);
+  box-shadow: var(--ombre-projet);
+  /* Legere mise en perspective : la capture cesse d'etre un rectangle plat
+     colle a la page. Elle se redresse au survol. */
+  transform: perspective(1400px) rotateY(3.5deg) scale(.985);
+  transition: transform .55s cubic-bezier(.22, .61, .36, 1),
+              box-shadow .55s cubic-bezier(.22, .61, .36, 1);
+}
+
+.project:nth-of-type(even) .project-media {
+  transform: perspective(1400px) rotateY(-3.5deg) scale(.985);
+}
+
+.project-media:hover,
+.project-media:focus-visible {
+  transform: perspective(1400px) rotateY(0) scale(1);
+  box-shadow: var(--ombre-projet-survol);
+}
+
+.project-media img { width: 100%; }
+
+/* --- le texte */
+
+.project-num {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: .12em;
+  color: var(--accent);
+  margin-bottom: 14px;
 }
 
 .project h3 {
   font-family: var(--font-display);
-  font-size: clamp(24px, 2.6vw, 32px);
-  letter-spacing: -.02em;
+  font-optical-sizing: auto;
+  font-size: clamp(30px, 3.6vw, 50px);
+  line-height: 1;
+  letter-spacing: -.03em;
   font-weight: 700;
 }
 
 .project-role {
-  font-size: 14.5px;
+  font-size: 15px;
   color: var(--text-faint);
-  margin: 4px 0 18px;
+  margin: 10px 0 22px;
 }
 
-.project-body p + p { margin-top: 14px; }
+.project-body p + p { margin-top: 15px; }
 .project-body p { color: var(--text-dim); }
 .project-body strong { color: var(--text); font-weight: 650; }
 
 .stack {
   display: flex;
   flex-wrap: wrap;
-  gap: 7px;
-  margin-top: 22px;
+  gap: 8px;
+  margin-top: 26px;
 }
 .stack li {
   font-family: var(--font-mono);
@@ -436,18 +482,36 @@ h1 {
   background: var(--bg-sunk);
   border: 1px solid var(--line);
   border-radius: 999px;
-  padding: 4px 11px;
+  padding: 5px 12px;
 }
 
-.project-links { display: flex; gap: 22px; margin-top: 24px; }
+.project-links { display: flex; gap: 10px; margin-top: 28px; flex-wrap: wrap; }
+
 .project-links a {
-  color: var(--accent);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 42px;
+  padding: 0 18px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  color: var(--text);
+  font-size: 14.5px;
   font-weight: 550;
   text-decoration: none;
-  border-bottom: 1px solid currentColor;
-  padding-bottom: 2px;
+  transition: border-color .18s, color .18s, transform .18s;
 }
-.project-links a:hover { color: var(--accent-hover); }
+.project-links a::after {
+  content: "→";
+  font-size: 15px;
+  transition: transform .18s;
+}
+.project-links a:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-2px);
+}
+.project-links a:hover::after { transform: translateX(3px); }
 
 /* ------------------------------------------------------------ open source */
 
@@ -632,6 +696,10 @@ h1 {
   .hero { grid-template-columns: 1fr; }
   .hero-photo { order: -1; }
   .project, .project + .project { grid-template-columns: 1fr; }
+  .project:nth-of-type(even) .project-media,
+  .project:nth-of-type(even) .project-body { grid-column: 1; grid-row: auto; }
+  .project-media,
+  .project:nth-of-type(even) .project-media { transform: none; }
   .skills dl { grid-template-columns: 1fr; gap: 4px 0; }
   .skills dt { margin-top: 12px; }
 }
