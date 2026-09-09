@@ -516,57 +516,69 @@ h1 {
 
 /* ------------------------------------------------------------ open source */
 
+/* Les chiffres sont l'argument de la section : ils sortent des cartes qui les
+   enfermaient pour occuper une bande, plus grands et plus aeres. */
 .figures {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 1px;
-  background: var(--line);
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  overflow: hidden;
-  margin-bottom: 52px;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: clamp(28px, 3.5vw, 56px);
+  padding: clamp(34px, 4vw, 56px) 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  margin-bottom: clamp(52px, 6vw, 84px);
 }
-.figures li {
-  background: var(--surface);
-  padding: 26px 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
+
+.figures li { display: flex; flex-direction: column; gap: 10px; }
 
 .figure {
   font-family: var(--font-display);
-  font-size: clamp(34px, 4vw, 48px);
-  line-height: 1;
-  letter-spacing: -.03em;
+  font-optical-sizing: auto;
+  font-size: clamp(48px, 6.2vw, 86px);
+  line-height: .9;
+  letter-spacing: -.045em;
   font-weight: 700;
   color: var(--accent);
   font-variant-numeric: tabular-nums;
 }
-.figure-label { font-size: 14px; color: var(--text-dim); }
+
+.figure-label {
+  font-size: 14px;
+  color: var(--text-dim);
+  max-width: 20ch;
+}
+
+/* Le bloc principal porte 32 des 41 contributions : un filet d'accent le
+   distingue des quatre depots secondaires, listes plus bas. */
+.oss-principal {
+  border-left: 2px solid var(--accent);
+  padding-left: clamp(22px, 3vw, 40px);
+  margin-bottom: clamp(52px, 6vw, 84px);
+}
 
 .oss-detail h3 {
-  font-size: 20px;
-  font-weight: 650;
-  letter-spacing: -.012em;
-  margin-bottom: 18px;
+  font-family: var(--font-display);
+  font-size: clamp(21px, 2.2vw, 28px);
+  letter-spacing: -.02em;
+  font-weight: 700;
+  margin-bottom: 22px;
 }
-.oss-detail h3 + h3 { margin-top: 48px; }
-.muted { color: var(--text-faint); font-weight: 400; }
+.muted { color: var(--text-faint); font-weight: 400; font-size: .82em; }
 
-.bullets { display: flex; flex-direction: column; gap: 14px; max-width: 76ch; }
+.oss-secondaire { margin-bottom: 24px; }
+
+.bullets { display: flex; flex-direction: column; gap: 16px; max-width: 76ch; }
 .bullets li {
   position: relative;
-  padding-left: 22px;
+  padding-left: 24px;
   color: var(--text-dim);
 }
 .bullets li::before {
   content: "";
   position: absolute;
   left: 0;
-  top: .62em;
-  width: 7px;
-  height: 7px;
+  top: .58em;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
   background: var(--accent);
 }
@@ -575,56 +587,82 @@ h1 {
 .repos { width: 100%; border-collapse: collapse; font-size: 15px; }
 .repos th, .repos td {
   text-align: left;
-  padding: 13px 16px 13px 0;
+  padding: 16px 18px 16px 0;
   border-bottom: 1px solid var(--line);
   vertical-align: top;
 }
 .repos thead th {
-  font-size: 12.5px;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
   text-transform: uppercase;
-  letter-spacing: .06em;
+  letter-spacing: .09em;
   color: var(--text-faint);
-  font-weight: 600;
+  font-weight: 400;
+  padding-bottom: 12px;
 }
 .repos tbody th { font-weight: 650; white-space: nowrap; }
 .repos td { color: var(--text-dim); }
-.repos td:nth-child(2) { font-variant-numeric: tabular-nums; width: 3.5rem; }
+.repos td:nth-child(2) {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  color: var(--accent);
+  width: 4rem;
+}
 
 /* --------------------------------------------------------------- parcours */
 
-.timeline { border-left: 2px solid var(--line); padding-left: 28px; }
-.timeline li { padding-bottom: 34px; position: relative; }
-.timeline li::before {
-  content: "";
-  position: absolute;
-  left: -35px;
-  top: 6px;
-  width: 11px;
-  height: 11px;
-  border-radius: 50%;
-  background: var(--bg);
-  border: 2px solid var(--line-strong);
+/* La date passe en colonne : l'oeil descend la chronologie d'un coup, sans
+   avoir a la relire dans chaque bloc. */
+.timeline { display: flex; flex-direction: column; }
+
+.timeline li {
+  display: grid;
+  grid-template-columns: minmax(120px, 168px) 1fr;
+  gap: clamp(20px, 3vw, 48px);
+  padding: clamp(26px, 3vw, 38px) 0;
+  border-top: 1px solid var(--line);
 }
-.timeline li:first-child::before { border-color: var(--accent); background: var(--accent); }
+.timeline li:last-child { border-bottom: 1px solid var(--line); }
 
 .when {
   font-family: var(--font-mono);
   font-size: 13px;
+  letter-spacing: .06em;
   color: var(--text-faint);
-  margin-bottom: 6px;
+  padding-top: 5px;
 }
-.timeline h3 { font-size: 19px; font-weight: 650; letter-spacing: -.012em; }
-.where { font-size: 15px; color: var(--accent); margin: 2px 0 8px; }
-.timeline li > p:last-child { color: var(--text-dim); max-width: 62ch; }
 
-.skills { margin-top: 20px; padding-top: 40px; border-top: 1px solid var(--line); }
-.skills h3 { font-size: 19px; font-weight: 650; margin-bottom: 22px; }
+/* Le jalon le plus recent est le seul en accent : il porte le diplome. */
+.timeline li:first-child .when { color: var(--accent); }
+
+.timeline h3 {
+  font-size: clamp(19px, 2vw, 24px);
+  font-weight: 650;
+  letter-spacing: -.016em;
+}
+.where { font-size: 15px; color: var(--text-dim); margin: 4px 0 10px; }
+.jalon > p:last-child { color: var(--text-dim); max-width: 62ch; }
+
+.skills { margin-top: clamp(44px, 5vw, 72px); }
+.skills h3 {
+  font-family: var(--font-display);
+  font-size: clamp(21px, 2.2vw, 28px);
+  letter-spacing: -.02em;
+  font-weight: 700;
+  margin-bottom: 26px;
+}
 .skills dl {
   display: grid;
-  grid-template-columns: minmax(140px, auto) 1fr;
-  gap: 14px 32px;
+  grid-template-columns: minmax(120px, 168px) 1fr;
+  gap: 18px clamp(20px, 3vw, 48px);
 }
-.skills dt { font-size: 14px; color: var(--text-faint); }
+.skills dt {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  letter-spacing: .06em;
+  color: var(--text-faint);
+  padding-top: 2px;
+}
 .skills dd { margin: 0; color: var(--text-dim); }
 
 /* ---------------------------------------------------------------- contact */
@@ -711,6 +749,10 @@ h1 {
   .topbar nav ul { gap: 16px; }
   .topbar nav a { font-size: 14px; }
   .hero, .section, .foot { padding-left: 18px; padding-right: 18px; }
+  .timeline li, .skills dl { grid-template-columns: 1fr; gap: 6px; }
+  .when { padding-top: 0; }
+  .skills dt { margin-top: 14px; }
+  .oss-principal { padding-left: 18px; }
   .repos thead { display: none; }
   .repos tbody th, .repos td { display: block; border: 0; padding: 2px 0; }
   .repos tbody tr { display: block; padding: 14px 0; border-bottom: 1px solid var(--line); }
