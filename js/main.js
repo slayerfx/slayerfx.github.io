@@ -72,3 +72,35 @@ if (!REDUIT && 'IntersectionObserver' in window) {
 
   document.querySelectorAll('[data-reveal]').forEach((el) => observateur.observe(el));
 }
+
+/* ------------------------------------------------------- halos de l'accroche */
+
+/* Les deux halos suivent le pointeur de quelques dizaines de pixels. C'est
+   assez pour que la page respire, trop peu pour distraire.
+
+   Rien n'est fait au clavier ni au doigt : `pointer: fine` exclut les ecrans
+   tactiles, ou l'effet n'aurait aucun sens. Et la position n'est ecrite qu'une
+   fois par trame, pas a chaque evenement — le pointeur en emet des centaines
+   par seconde. */
+const accroche = document.querySelector('.hero');
+const survolPrecis = window.matchMedia('(pointer: fine)').matches;
+
+if (accroche && survolPrecis && !REDUIT) {
+  let enAttente = false;
+  let x = 0;
+  let y = 0;
+
+  window.addEventListener('pointermove', (e) => {
+    // Ramene la position dans [-1, 1], centre de l'ecran a zero.
+    x = (e.clientX / window.innerWidth) * 2 - 1;
+    y = (e.clientY / window.innerHeight) * 2 - 1;
+
+    if (enAttente) return;
+    enAttente = true;
+    requestAnimationFrame(() => {
+      accroche.style.setProperty('--px', x.toFixed(3));
+      accroche.style.setProperty('--py', y.toFixed(3));
+      enAttente = false;
+    });
+  }, { passive: true });
+}

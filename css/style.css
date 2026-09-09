@@ -47,6 +47,11 @@
   --accent-soft: #e8ebfd;
   --accent-fg: #ffffff;
 
+  --halo-a: radial-gradient(circle, rgba(31, 60, 232, .17), transparent 68%);
+  --halo-b: radial-gradient(circle, rgba(232, 108, 60, .15), transparent 68%);
+  --grain-opacite: .34;
+  --grain-melange: multiply;
+
   --page: 1120px;
   --gap: clamp(72px, 9vw, 128px);
 
@@ -78,6 +83,11 @@
     --accent-hover: #aab7ff;
     --accent-soft: #1c2340;
     --accent-fg: #0d0f1a;
+
+    --halo-a: radial-gradient(circle, rgba(96, 122, 255, .20), transparent 68%);
+    --halo-b: radial-gradient(circle, rgba(255, 138, 84, .13), transparent 68%);
+    --grain-opacite: .20;
+    --grain-melange: overlay;
   }
 }
 
@@ -167,57 +177,136 @@ code {
 
 /* --------------------------------------------------------------- accroche */
 
+/* L'accroche sort de la colonne de contenu pour occuper toute la largeur et
+   toute la hauteur de l'ecran. C'est la seule section a le faire : elle donne
+   le ton, le reste du site revient a une mise en page sage. */
 .hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  padding: 120px 0 96px;
+  margin-bottom: var(--gap);
+}
+
+/* --- decor : deux halos et un grain, entierement dessines par le navigateur */
+
+.hero-decor {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.halo {
+  position: absolute;
+  border-radius: 50%;
+  /* Le flou est ce qui coute le plus cher a l'affichage : `will-change` sort
+     ces deux elements dans leur propre calque, une fois pour toutes. */
+  filter: blur(90px);
+  will-change: transform;
+  /* Deplacement suivant le pointeur, pose par js/main.js. Les valeurs par
+     defaut valent zero : sans souris, les halos restent simplement immobiles. */
+  transform: translate3d(calc(var(--px, 0) * 34px), calc(var(--py, 0) * 26px), 0);
+  transition: transform .9s cubic-bezier(.22, .61, .36, 1);
+}
+
+.halo-a {
+  width: 52vw;
+  height: 52vw;
+  max-width: 700px;
+  max-height: 700px;
+  top: -14vw;
+  right: -8vw;
+  background: var(--halo-a);
+}
+
+.halo-b {
+  width: 42vw;
+  height: 42vw;
+  max-width: 560px;
+  max-height: 560px;
+  bottom: -12vw;
+  left: -6vw;
+  background: var(--halo-b);
+  transform: translate3d(calc(var(--px, 0) * -22px), calc(var(--py, 0) * -18px), 0);
+}
+
+/* Grain : un bruit fractal genere par le navigateur, pas une image. Il casse
+   le lisse des degrades, qui autrement se voit en bandes sur certains ecrans. */
+.grain {
+  position: absolute;
+  inset: -50%;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: var(--grain-opacite);
+  mix-blend-mode: var(--grain-melange);
+}
+
+/* --- contenu */
+
+.hero-inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
   max-width: var(--page);
   margin: 0 auto;
-  padding: clamp(40px, 7vw, 96px) 28px var(--gap);
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: clamp(32px, 5vw, 72px);
-  align-items: center;
+  padding: 0 28px;
 }
 
 .eyebrow {
   font-family: var(--font-mono);
   font-size: 13px;
-  letter-spacing: .08em;
+  letter-spacing: .1em;
   text-transform: uppercase;
   color: var(--text-faint);
-  margin-bottom: 22px;
+  margin-bottom: 26px;
 }
 
 h1 {
   font-family: var(--font-display);
   font-optical-sizing: auto;
-  font-size: clamp(52px, 9.5vw, 116px);
-  line-height: .92;
-  letter-spacing: -.035em;
+  font-size: clamp(58px, 12.5vw, 178px);
+  line-height: .84;
+  letter-spacing: -.045em;
   font-weight: 700;
-  margin-bottom: 28px;
+  margin-bottom: clamp(36px, 5vw, 68px);
 }
 
+.nom-ligne { display: block; }
+
+/* La seconde ligne est decalee : le nom cesse d'etre un bloc et devient une
+   composition. */
+.nom-decale { margin-left: clamp(0px, 6vw, 96px); }
+
+.hero-bas {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: clamp(28px, 5vw, 72px);
+  flex-wrap: wrap;
+}
+
+.hero-dire { max-width: 46ch; }
+
 .lede {
-  font-size: clamp(17px, 1.7vw, 20px);
+  font-size: clamp(17px, 1.55vw, 20px);
   line-height: 1.55;
   color: var(--text-dim);
-  max-width: 46ch;
 }
 .lede strong { color: var(--text); font-weight: 650; }
 
-.seeking {
-  margin-top: 18px;
-  font-size: 17px;
-  max-width: 46ch;
-}
+.seeking { margin-top: 18px; font-size: 17px; }
 .seeking strong { color: var(--accent); font-weight: 650; }
 
-.links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 32px; }
+.links { display: flex; flex-wrap: wrap; gap: 10px; }
 
 .btn {
   display: inline-flex;
   align-items: center;
-  height: 44px;
-  padding: 0 20px;
+  height: 46px;
+  padding: 0 22px;
   border: 1px solid var(--line-strong);
   border-radius: 999px;
   background: var(--surface);
@@ -225,9 +314,9 @@ h1 {
   font-size: 15px;
   font-weight: 550;
   text-decoration: none;
-  transition: border-color .15s, background .15s, color .15s;
+  transition: border-color .18s, background .18s, color .18s, transform .18s;
 }
-.btn:hover { border-color: var(--text); }
+.btn:hover { border-color: var(--text); transform: translateY(-2px); }
 
 .btn-primary {
   background: var(--accent);
@@ -236,18 +325,41 @@ h1 {
 }
 .btn-primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); }
 
-/* Le detourage de la photo a des bords imparfaits : un fond plein et un
-   masque circulaire les absorbent. */
-.hero-photo {
-  width: clamp(180px, 22vw, 260px);
-  aspect-ratio: 1;
-  border-radius: 50%;
-  overflow: hidden;
-  background: var(--bg-sunk);
-  border: 1px solid var(--line);
-  flex: none;
+/* --- invite a defiler */
+
+.cue {
+  position: relative;
+  z-index: 1;
+  align-self: center;
+  margin-top: clamp(48px, 7vw, 96px);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  text-decoration: none;
+  transition: color .18s;
 }
-.hero-photo img { width: 100%; height: 100%; object-fit: cover; }
+.cue:hover { color: var(--accent); }
+
+.cue svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  animation: descendre 2.4s ease-in-out infinite;
+}
+
+@keyframes descendre {
+  0%, 100% { transform: translateY(0); opacity: .75; }
+  50%      { transform: translateY(5px); opacity: 1; }
+}
 
 /* --------------------------------------------------------------- sections */
 

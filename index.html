@@ -43,30 +43,53 @@
 <main id="contenu">
 
   <!-- ------------------------------------------------------------- accroche -->
+  <!-- ------------------------------------------------------------- accroche -->
   <section class="hero" id="accueil" data-reveal-group>
-    <div class="hero-text">
-      <p class="eyebrow" data-reveal>Développeur Web Full-Stack — Rennes</p>
-      <h1 data-reveal>Louenn<br>Penanc'hoat</h1>
-      <p class="lede" data-reveal>
-        Je rends le code plus sûr qu'il ne l'était. Onze semaines de stage sur les
-        bibliothèques open source <strong>PHPOffice</strong> : 41 pull requests mergées,
-        quatre formats de fichiers écrits, l'analyse statique montée de cinq niveaux.
-      </p>
-      <p class="seeking" data-reveal>
-        <strong>En recherche d'une alternance</strong> pour poursuivre en Bachelor
-        Développeur Web.
-      </p>
-
-      <ul class="links" data-reveal>
-        <li><a class="btn btn-primary" href="https://github.com/slayerfx" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-        <li><a class="btn" href="https://www.linkedin.com/in/louenn-penanc-hoat-a49774216/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
-        <li><a class="btn" href="mailto:louenn.p@gmail.com">louenn.p@gmail.com</a></li>
-      </ul>
+    <!-- Décor : deux halos colorés et un grain. Purement présentationnel, donc
+         retiré de l'arbre d'accessibilité. Aucun octet de réseau : tout est
+         dessiné par le navigateur. -->
+    <div class="hero-decor" aria-hidden="true">
+      <span class="halo halo-a"></span>
+      <span class="halo halo-b"></span>
+      <span class="grain"></span>
     </div>
 
-    <figure class="hero-photo" data-reveal>
-      <img src="img/portrait.webp" alt="Portrait de Louenn Penanc'hoat" width="560" height="560">
-    </figure>
+    <div class="hero-inner">
+      <p class="eyebrow" data-reveal>Développeur Web Full-Stack — Rennes</p>
+
+      <h1 data-reveal>
+        <span class="nom-ligne">Louenn</span>
+        <span class="nom-ligne nom-decale">Penanc'hoat</span>
+      </h1>
+
+      <div class="hero-bas">
+        <div class="hero-dire">
+          <p class="lede" data-reveal>
+            Je rends le code plus sûr qu'il ne l'était. Onze semaines de stage sur
+            les bibliothèques open source <strong>PHPOffice</strong> : 41 pull
+            requests mergées, quatre formats de fichiers écrits, l'analyse statique
+            montée de cinq niveaux.
+          </p>
+          <p class="seeking" data-reveal>
+            <strong>En recherche d'une alternance</strong> pour poursuivre en
+            Bachelor Développeur Web.
+          </p>
+        </div>
+
+        <ul class="links" data-reveal>
+          <li><a class="btn btn-primary" href="https://github.com/slayerfx" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+          <li><a class="btn" href="https://www.linkedin.com/in/louenn-penanc-hoat-a49774216/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+          <li><a class="btn" href="mailto:louenn.p@gmail.com">louenn.p@gmail.com</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <a class="cue" href="#projets" data-reveal>
+      <span>Voir les projets</span>
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M12 4v15M6 13.5 12 19.5 18 13.5"/>
+      </svg>
+    </a>
   </section>
 
   <!-- -------------------------------------------------------------- projets -->
