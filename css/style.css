@@ -273,6 +273,9 @@ code {
   padding: 4px 0;
   font-family: var(--font-ui);
   font-size: 12px;
+  /* 600 plutot que 700 : a cette taille, le gras plein epaissit les fûts au
+     point de fermer les contreformes du « a » et du « e ». */
+  font-weight: 600;
   letter-spacing: .02em;
   color: var(--text-dim);
   text-decoration: none;
