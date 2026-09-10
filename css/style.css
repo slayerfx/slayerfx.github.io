@@ -523,6 +523,7 @@ h1 {
   color: var(--text-dim);
 }
 .lede strong { color: var(--text); font-weight: 650; }
+.lede + .lede { margin-top: 14px; }
 
 .seeking { margin-top: 18px; font-size: 17px; }
 .seeking strong { color: var(--accent); font-weight: 650; }

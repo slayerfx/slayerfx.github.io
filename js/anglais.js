@@ -27,6 +27,8 @@ const ANGLAIS = {
 
   /* --- accroche */
   'hero.sur': 'Full-Stack Web Developer — Rennes, France',
+  'hero.moi': 'As a kid, video games got me into computers, then into optimising my PC. '
+            + 'Now I build my own tools to save time.',
   'hero.lede': 'I leave code safer than I found it. Eleven weeks on the '
              + '<strong>PHPOffice</strong> open source libraries: 41 pull requests merged.',
   'hero.cherche': '<strong>Looking for an apprenticeship</strong> starting 30 November 2026, '
