@@ -1025,6 +1025,16 @@ h1 {
   fill: currentColor;
 }
 
+.contact-boutons {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Le lien de telechargement et le bouton de copie partagent la meme forme :
+   ce sont deux actions secondaires de meme rang, sous les trois liens. */
 .copier {
   display: inline-flex;
   align-items: center;
@@ -1038,6 +1048,7 @@ h1 {
   font-family: var(--font-ui);
   font-size: 13.5px;
   cursor: pointer;
+  text-decoration: none;
   transition: color .18s, border-color .18s, background .18s;
 }
 .copier:hover { color: var(--text); border-color: var(--text); }

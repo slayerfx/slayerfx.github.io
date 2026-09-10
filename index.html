@@ -372,12 +372,21 @@
           </a>
         </nav>
 
-        <!-- L'adresse n'est plus ecrite en clair : ce bouton reste le moyen de
-             l'obtenir sans passer par un client de messagerie. Il est masque
-             tant que le script n'a pas verifie l'acces au presse-papier. -->
-        <button class="copier" type="button" data-copier="louenn.p@gmail.com" hidden>
-          <span class="copier-mot" data-i18n="contact.copier">Copier l'adresse</span>
-        </button>
+        <div class="contact-boutons">
+          <!-- Adresse courte et memorisable : slayerfx.github.io/cv.pdf. L'attribut
+               `download` renomme le fichier a l'arrivee, pour qu'il ne finisse pas
+               « cv.pdf » parmi les telechargements d'un recruteur. -->
+          <a class="copier" href="cv.pdf" download="CV-Louenn-Penanchoat-Developpeur-Full-Stack.pdf">
+            <span data-i18n="contact.cv">Télécharger le CV</span>
+          </a>
+
+          <!-- L'adresse n'est plus ecrite en clair ici : ce bouton reste le moyen
+               de l'obtenir sans passer par un client de messagerie. Il est masque
+               tant que le script n'a pas verifie l'acces au presse-papier. -->
+          <button class="copier" type="button" data-copier="louenn.p@gmail.com" hidden>
+            <span class="copier-mot" data-i18n="contact.copier">Copier l'adresse</span>
+          </button>
+        </div>
       </div>
 
       <p class="contact-cadre" data-i18n="contact.cadre">

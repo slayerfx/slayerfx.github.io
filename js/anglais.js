@@ -108,6 +108,7 @@ const ANGLAIS = {
   'contact.dire': 'Open to <strong>software development apprenticeship</strong> offers, '
                 + 'in and around Rennes.',
   'contact.copier': 'Copy the address',
+  'contact.cv': 'Download the CV',
   'contact.label': 'Contact links',
   'contact.mail': 'Email address',
   'contact.cadre': 'From 30 November 2026 · 4 days a week on site · '
