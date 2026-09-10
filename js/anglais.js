@@ -29,8 +29,8 @@ const ANGLAIS = {
   'hero.sur': 'Full-Stack Web Developer — Rennes, France',
   'hero.lede': 'I leave code safer than I found it. Eleven weeks on the '
              + '<strong>PHPOffice</strong> open source libraries: 41 pull requests merged.',
-  'hero.cherche': '<strong>Looking for an apprenticeship</strong> to continue into a '
-                + "Bachelor's in web development.",
+  'hero.cherche': '<strong>Looking for an apprenticeship</strong> starting 30 November 2026, '
+                + 'four days a week on site.',
   'hero.cue': 'See the projects',
 
   /* --- projets */
@@ -105,11 +105,12 @@ const ANGLAIS = {
 
   /* --- contact */
   'contact.sur': 'Contact',
-  'contact.dire': 'Open to <strong>web development apprenticeship</strong> offers, '
+  'contact.dire': 'Open to <strong>software development apprenticeship</strong> offers, '
                 + 'in and around Rennes.',
   'contact.copier': 'Copy the address',
   'contact.label': 'Contact links',
   'contact.mail': 'Email address',
-  'contact.cadre': "Apprenticeship — Bachelor's in web development · Rennes and nearby",
+  'contact.cadre': 'From 30 November 2026 · 4 days a week on site · '
+                 + 'Bachelor Agentic AI Software Engineering, RNCP level 6',
 
 };
