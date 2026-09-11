@@ -127,7 +127,9 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
+/* La barre du haut reste collee pendant le defilement : sans cette marge,
+   un lien du menu amene sa section sous la barre, qui en cache le titre. */
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
 
 body {
   margin: 0;
