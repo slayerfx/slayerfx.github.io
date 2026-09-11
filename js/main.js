@@ -53,9 +53,16 @@ for (const lien of topbar.querySelectorAll('nav a[href^="#"]')) {
 if (liens.size && 'IntersectionObserver' in window) {
   const visibles = new Set();
 
+  // En bout de page, la derniere section ne peut plus monter jusqu'a la bande
+  // de reperage : si elle est courte, la bande reste dans la precedente. C'est
+  // pourtant bien elle qu'on lit, et celle qu'on vient de demander.
+  const derniere = [...liens.keys()].pop();
+  const enBas = () =>
+    window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4;
+
   const marquer = () => {
-    // La section retenue est la plus haute de celles actuellement traversees.
-    const courante = [...visibles].sort(
+    // Sinon, la section retenue est la plus haute de celles traversees.
+    const courante = enBas() ? derniere : [...visibles].sort(
       (a, b) => a.getBoundingClientRect().top - b.getBoundingClientRect().top,
     )[0];
 
@@ -78,6 +85,17 @@ if (liens.size && 'IntersectionObserver' in window) {
   });
 
   for (const section of liens.keys()) veille.observe(section);
+
+  // La bande ne bouge plus en bout de page : seul le defilement signale qu'on
+  // y arrive ou qu'on en repart.
+  let etaitEnBas = enBas();
+  window.addEventListener('scroll', () => {
+    const bas = enBas();
+    if (bas !== etaitEnBas) {
+      etaitEnBas = bas;
+      marquer();
+    }
+  }, { passive: true });
 }
 
 /* ----------------------------------------------------------- compteurs */
