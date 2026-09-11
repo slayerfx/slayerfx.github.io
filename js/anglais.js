@@ -88,6 +88,13 @@ const ANGLAIS = {
 
   /* --- parcours */
   'parcours.titre': 'Background',
+  'parcours.histoire': 'My story',
+  'parcours.lede': "I fell into computers as a kid, through video games, wanting to understand "
+                 + "how the apps and websites I used actually worked. I've always looked to "
+                 + 'optimise: first the hardware, with my desktop PC setup, then the software, '
+                 + "to make it faster. That's where I got hooked on solving problems and finding "
+                 + 'solutions, to the point of building my own tools to make life easier. '
+                 + "Now I'm turning it into a career.",
   'p1.t': 'Professional qualification, Web &amp; Mobile Developer',
   'p1.o': '3W Academy — RNCP level 5 (EQF 5), awarded 10 August 2026',
   'p1.d': 'Full-stack development, API integration, Git/GitHub workflow and agile methods.',

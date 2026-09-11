@@ -867,10 +867,15 @@ h1 {
    avoir a la relire dans chaque bloc. */
 .timeline { display: flex; flex-direction: column; }
 
-.timeline li {
+/* Le texte de presentation partage la grille des jalons : son etiquette dans
+   la colonne des dates, le texte dans celle des titres. */
+.timeline li,
+.parcours-intro {
   display: grid;
   grid-template-columns: minmax(120px, 168px) 1fr;
   gap: clamp(20px, 3vw, 48px);
+}
+.timeline li {
   padding: clamp(26px, 3vw, 38px) 0;
   border-top: 1px solid var(--line);
 }
@@ -878,6 +883,13 @@ h1 {
 /* Le titre de section porte deja un filet ; celui du premier jalon en
    dessinait un second juste en dessous, avec une bande vide entre les deux. */
 .timeline li:first-child { border-top: 0; padding-top: 0; }
+
+.parcours-intro {
+  padding-bottom: clamp(26px, 3vw, 38px);
+  border-bottom: 1px solid var(--line);
+}
+.parcours-intro + .timeline li:first-child { padding-top: clamp(26px, 3vw, 38px); }
+.parcours-texte { font-size: 18px; line-height: 1.6; color: var(--text); max-width: 62ch; }
 
 .when {
   font-family: var(--font-mono);
@@ -1084,7 +1096,7 @@ h1 {
   .topbar nav ul { gap: 16px; }
   .topbar nav a { font-size: 12px; }
   .section { padding-left: 18px; padding-right: 18px; }
-  .timeline li, .skills dl { grid-template-columns: 1fr; gap: 6px; }
+  .timeline li, .skills dl, .parcours-intro { grid-template-columns: 1fr; gap: 6px; }
   .when { padding-top: 0; }
   .skills dt { margin-top: 14px; }
   .oss-principal { padding-left: 18px; }
