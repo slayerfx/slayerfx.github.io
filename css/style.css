@@ -523,7 +523,6 @@ h1 {
   color: var(--text-dim);
 }
 .lede strong { color: var(--text); font-weight: 650; }
-.lede + .lede { margin-top: 14px; }
 
 .seeking { margin-top: 18px; font-size: 17px; }
 .seeking strong { color: var(--accent); font-weight: 650; }
@@ -752,6 +751,10 @@ h1 {
 .project-links a:hover::after { transform: translateX(3px); }
 
 /* ------------------------------------------------------------ open source */
+
+/* Le lien vers la liste des pull requests reprend les boutons des projets ;
+   il se glisse entre le texte d'introduction et la bande de chiffres. */
+.oss-preuve { margin: 0 0 clamp(34px, 4vw, 48px); }
 
 /* Les chiffres sont l'argument de la section : ils sortent des cartes qui les
    enfermaient pour occuper une bande, plus grands et plus aeres. */

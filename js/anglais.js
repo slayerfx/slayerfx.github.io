@@ -27,8 +27,6 @@ const ANGLAIS = {
 
   /* --- accroche */
   'hero.sur': 'Full-Stack Web Developer — Rennes, France',
-  'hero.moi': 'As a kid, video games got me into computers, then into optimising my PC. '
-            + 'Now I build my own tools to save time.',
   'hero.lede': 'I leave code safer than I found it. Eleven weeks on the '
              + '<strong>PHPOffice</strong> open source libraries: 41 pull requests merged.',
   'hero.cherche': '<strong>Looking for an apprenticeship</strong> starting 30 November 2026, '
@@ -63,6 +61,7 @@ const ANGLAIS = {
   'oss.lede': 'Eleven weeks, May to July 2026, on the PHP libraries of '
             + '<a href="https://github.com/PHPOffice" target="_blank" rel="noopener noreferrer">PHPOffice</a>. '
             + 'Every contribution was reviewed and approved by the project maintainer.',
+  'oss.voirpr': 'See all 41 pull requests on GitHub',
 
   'fig.pr': 'pull requests merged',
   'fig.depots': 'repositories',
