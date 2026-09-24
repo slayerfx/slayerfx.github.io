@@ -48,7 +48,7 @@ const ANGLAIS = {
           + 'roles, hashed passwords, PDO prepared statements. PHPUnit tests on the '
           + 'business logic.',
 
-  'sg.role': 'Audio downloader with a local web interface — personal tool',
+  'sg.role': 'Audio downloader with a local web interface — personal tool, built with the help of AI',
   'sg.p1': 'A track, a playlist, your likes or a whole profile, fetched as tagged MP3 '
          + 'with artwork. The server streams its progress live: current step, track '
          + 'being processed, throughput, time remaining.',
@@ -58,7 +58,7 @@ const ANGLAIS = {
          + 'rebinding, and reconfiguration is restricted to the host machine.',
 
   'win.titre': 'Windows tools',
-  'win.role': 'pc-tuning and windows-disk-cleaner — personal PowerShell tools',
+  'win.role': 'pc-tuning and windows-disk-cleaner — personal PowerShell tools, built with the help of AI',
   'win.p1': '<strong>pc-tuning</strong> makes a gaming and creation PC more responsive: '
           + 'telemetry and promotional apps off, no power saving on the graphics card, USB '
           + 'and network links, the power plan set to maximum, and optionally the Nahimic '
@@ -66,10 +66,12 @@ const ANGLAIS = {
           + 'forty or so settings, re-applies what drifted and can undo everything. It also '
           + 'reports what is set in the BIOS, such as the XMP profile, Resizable BAR or '
           + 'Secure Boot.',
-  'win.p2': '<strong>windows-disk-cleaner</strong> frees space on the system drive by '
-          + 'deleting only what rebuilds itself, dry run first. Both are documented in '
-          + 'English and French, and checked on every push: syntax, PSScriptAnalyzer and '
-          + 'smoke tests on a Windows runner.',
+  'win.p2': '<strong>windows-disk-cleaner</strong> often frees several GB on the system '
+          + 'drive, deleting only what rebuilds itself: shader caches of old NVIDIA drivers, '
+          + 'driver packages already installed, old app versions, browser and code editor '
+          + 'caches. Dry run first. Both tools are documented in English and French, and '
+          + 'checked on every push: syntax, PSScriptAnalyzer and smoke tests on a Windows '
+          + 'runner.',
 
   /* --- open source */
   'oss.titre': 'Open source internship — PHPOffice',
@@ -121,6 +123,9 @@ const ANGLAIS = {
 
   'comp.titre': 'Skills',
   'comp.socle': 'Core stack',
+  'comp.socle.d': 'HTML5, CSS3, JavaScript, PHP, MySQL — learned in training',
+  'comp.ia': 'With the help of AI',
+  'comp.ia.d': 'Python and PowerShell, for personal tools such as SoundGrab and pc-tuning',
   'comp.outils': 'Tools',
   'comp.qualite': 'Quality &amp; continuous integration',
   'comp.langues': 'Languages',

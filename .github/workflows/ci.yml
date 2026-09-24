@@ -13,8 +13,8 @@ jobs:
     name: Validité du HTML
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with:
           node-version: '22'
       - name: Valider index.html
@@ -24,8 +24,8 @@ jobs:
     name: Contrastes des deux palettes
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with:
           node-version: '22'
       # Lighthouse n'audite qu'un theme a la fois, et l'emuler en sombre
@@ -39,8 +39,8 @@ jobs:
     name: Lighthouse
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with:
           node-version: '22'
       # Les seuils sont ceux que la page atteint reellement : 100 partout, et
@@ -49,7 +49,7 @@ jobs:
         run: npx --yes @lhci/cli@0.15.x autorun
       - name: Conserver le rapport
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: rapport-lighthouse
           path: .lighthouse/
@@ -59,7 +59,7 @@ jobs:
     name: Liens morts
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Vérifier les liens
         uses: lycheeverse/lychee-action@v2
         with:
