@@ -53,6 +53,9 @@ jobs:
         with:
           name: rapport-lighthouse
           path: .lighthouse/
+          # Le dossier commence par un point : depuis sa version 4.4, upload-artifact
+          # l'ignore sans cette option, et aucun rapport n'etait plus conserve.
+          include-hidden-files: true
           retention-days: 14
 
   liens:
