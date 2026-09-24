@@ -20,6 +20,7 @@ const ANGLAIS = {
   /* --- chrome */
   'skip': 'Skip to content',
   'nav.label': 'Main navigation',
+  'nav.outils': 'Windows tools',
   'nav.oss': 'Open source',
   'nav.parcours': 'Background',
   'nav.contact': 'Contact',
@@ -55,6 +56,17 @@ const ANGLAIS = {
          + 'no CDN</strong> — with light and dark themes, keyboard navigation and screen '
          + 'reader announcements. The <code>Host</code> header is validated against DNS '
          + 'rebinding, and reconfiguration is restricted to the host machine.',
+
+  'win.titre': 'Windows tools',
+  'win.role': 'pc-tuning and windows-disk-cleaner — personal PowerShell tools',
+  'win.p1': '<strong>pc-tuning</strong> keeps about forty Windows settings it can check, '
+          + 're-apply and undo: updates quietly revert some of them, and a check shows '
+          + 'exactly which. The previous state is saved before every change, and guides '
+          + 'cover the BIOS and the hardware.',
+  'win.p2': '<strong>windows-disk-cleaner</strong> frees space on the system drive by '
+          + 'deleting only what rebuilds itself, dry run first. Both are documented in '
+          + 'English and French, and checked on every push: syntax, PSScriptAnalyzer and '
+          + 'smoke tests on a Windows runner.',
 
   /* --- open source */
   'oss.titre': 'Open source internship — PHPOffice',

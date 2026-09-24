@@ -77,6 +77,7 @@
     <ul>
       <li><a href="#onemorerep">OneMoreRep</a></li>
       <li><a href="#soundgrab">SoundGrab</a></li>
+      <li><a href="#outils-windows" data-i18n="nav.outils">Outils Windows</a></li>
       <li><a href="#open-source" data-i18n="nav.oss">Open source</a></li>
       <li><a href="#parcours" data-i18n="nav.parcours">Parcours</a></li>
       <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
@@ -219,6 +220,40 @@
         </ul>
         <p class="project-links">
           <a href="https://github.com/slayerfx/soundgrab" target="_blank" rel="noopener noreferrer" data-i18n="lien.code">Code source</a>
+        </p>
+      </div>
+    </article>
+
+    <!-- Deux outils en un seul bloc : ils repondent au meme besoin, et la
+         capture montre ce qui les distingue des « optimiseurs » habituels —
+         une verification qui repere ce que Windows a defait tout seul. -->
+    <article class="project" id="outils-windows" data-reveal>
+      <a class="project-media" href="https://github.com/slayerfx/pc-tuning" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true">
+        <img src="img/pc-tuning.webp" alt="" width="792" height="654" loading="lazy">
+      </a>
+      <div class="project-body">
+        <p class="project-num" aria-hidden="true">03</p>
+        <h3 data-i18n="win.titre">Outils Windows</h3>
+        <p class="project-role" data-i18n="win.role">pc-tuning et windows-disk-cleaner — outils personnels en PowerShell</p>
+        <p data-i18n="win.p1">
+          <strong>pc-tuning</strong> tient une quarantaine de réglages de Windows qu'il sait
+          vérifier, réappliquer et annuler : les mises à jour en défont certains sans
+          prévenir, et une vérification montre exactement lesquels. L'état d'avant est noté
+          avant chaque modification, et des guides couvrent le BIOS et le matériel.
+        </p>
+        <p data-i18n="win.p2">
+          <strong>windows-disk-cleaner</strong> libère le disque système en ne supprimant que
+          ce qui se reconstruit tout seul, simulation d'abord. Les deux sont documentés en
+          français et en anglais, et vérifiés à chaque push : syntaxe, PSScriptAnalyzer et
+          tests sur une machine Windows.
+        </p>
+        <ul class="stack">
+          <li>PowerShell 5.1</li><li>WMI / CIM</li><li>P/Invoke (C#)</li>
+          <li>PSScriptAnalyzer</li><li>GitHub Actions</li>
+        </ul>
+        <p class="project-links">
+          <a href="https://github.com/slayerfx/pc-tuning" target="_blank" rel="noopener noreferrer">pc-tuning</a>
+          <a href="https://github.com/slayerfx/windows-disk-cleaner" target="_blank" rel="noopener noreferrer">windows-disk-cleaner</a>
         </p>
       </div>
     </article>
