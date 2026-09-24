@@ -111,7 +111,7 @@ const ANGLAIS = {
                  + "to make it faster. That's where I got hooked on solving problems and finding "
                  + 'solutions, to the point of building my own tools to make life easier. '
                  + "Now I'm turning it into a career.",
-  'p1.t': 'Professional qualification, Web &amp; Mobile Developer',
+  'p1.t': 'Professional qualification, Web and Mobile Web Developer',
   'p1.o': '3W Academy — RNCP level 5 (EQF 5), awarded 10 August 2026',
   'p1.d': 'Full-stack development, API integration, Git/GitHub workflow and agile methods.',
   'p2.t': 'Financial market analysis',
