@@ -59,10 +59,13 @@ const ANGLAIS = {
 
   'win.titre': 'Windows tools',
   'win.role': 'pc-tuning and windows-disk-cleaner — personal PowerShell tools',
-  'win.p1': '<strong>pc-tuning</strong> keeps about forty Windows settings it can check, '
-          + 're-apply and undo: updates quietly revert some of them, and a check shows '
-          + 'exactly which. The previous state is saved before every change, and guides '
-          + 'cover the BIOS and the hardware.',
+  'win.p1': '<strong>pc-tuning</strong> makes a gaming and creation PC more responsive: '
+          + 'telemetry and promotional apps off, no power saving on the graphics card, USB '
+          + 'and network links, the power plan set to maximum, and optionally the Nahimic '
+          + 'audio layer removed. Windows updates quietly undo some of these: it checks the '
+          + 'forty or so settings, re-applies what drifted and can undo everything. It also '
+          + 'reports what is set in the BIOS, such as the XMP profile, Resizable BAR or '
+          + 'Secure Boot.',
   'win.p2': '<strong>windows-disk-cleaner</strong> frees space on the system drive by '
           + 'deleting only what rebuilds itself, dry run first. Both are documented in '
           + 'English and French, and checked on every push: syntax, PSScriptAnalyzer and '
