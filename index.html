@@ -77,7 +77,8 @@
     <ul>
       <li><a href="#onemorerep">OneMoreRep</a></li>
       <li><a href="#soundgrab">SoundGrab</a></li>
-      <li><a href="#outils-windows" data-i18n="nav.outils">Outils Windows</a></li>
+      <li><a href="#pc-tuning">pc-tuning</a></li>
+      <li><a href="#windows-disk-cleaner">windows-disk-cleaner</a></li>
       <li><a href="#open-source" data-i18n="nav.oss">Open source</a></li>
       <li><a href="#parcours" data-i18n="nav.parcours">Parcours</a></li>
       <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
@@ -224,41 +225,67 @@
       </div>
     </article>
 
-    <!-- Deux outils en un seul bloc : ils repondent au meme besoin, et la
-         capture montre ce qui les distingue des « optimiseurs » habituels —
-         une verification qui repere ce que Windows a defait tout seul. -->
-    <article class="project" id="outils-windows" data-reveal>
+    <!-- La capture montre ce qui distingue pc-tuning des « optimiseurs »
+         habituels : une verification qui repere ce que Windows a defait tout
+         seul. -->
+    <article class="project" id="pc-tuning" data-reveal>
       <a class="project-media" href="https://github.com/slayerfx/pc-tuning" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true">
         <img src="img/pc-tuning.webp" alt="" width="792" height="654" loading="lazy">
       </a>
       <div class="project-body">
         <p class="project-num" aria-hidden="true">03</p>
-        <h3 data-i18n="win.titre">Outils Windows</h3>
-        <p class="project-role" data-i18n="win.role">pc-tuning et windows-disk-cleaner — outils personnels en PowerShell, développés avec l'aide de l'IA</p>
-        <p data-i18n="win.p1">
-          <strong>pc-tuning</strong> rend un PC de jeu et de création plus réactif : télémétrie
-          et applis promotionnelles coupées, plus d'économies d'énergie sur la carte graphique,
-          l'USB et le réseau, plan d'alimentation au maximum, et en option la couche audio
-          Nahimic retirée. Les mises à jour de Windows en défont certains sans prévenir : il
-          vérifie la quarantaine de réglages, réapplique ce qui a bougé et sait tout annuler.
-          Il signale aussi ce qui se règle dans le BIOS, comme le profil XMP, Resizable BAR
-          ou Secure Boot.
+        <h3>pc-tuning</h3>
+        <p class="project-role" data-i18n="pct.role">Optimisation de Windows pour le jeu et la création — outil personnel en PowerShell, développé avec l'aide de l'IA</p>
+        <p data-i18n="pct.p1">
+          Rend un PC de jeu et de création plus réactif : télémétrie et applis promotionnelles
+          coupées, plus d'économies d'énergie sur la carte graphique, l'USB et le réseau, plan
+          d'alimentation au maximum, et en option la couche audio Nahimic retirée.
         </p>
-        <p data-i18n="win.p2">
-          <strong>windows-disk-cleaner</strong> libère souvent plusieurs Go sur le disque
-          système, en ne supprimant que ce qui se reconstruit tout seul : caches de shaders
-          des anciens pilotes NVIDIA, paquets de pilotes déjà installés, anciennes versions
-          d'applis, caches des navigateurs et des éditeurs de code. Simulation d'abord. Les
-          deux outils sont documentés en français et en anglais, et vérifiés à chaque push :
-          syntaxe, PSScriptAnalyzer et tests sur une machine Windows.
+        <p data-i18n="pct.p2">
+          Les mises à jour de Windows en défont certains sans prévenir : il vérifie la
+          quarantaine de réglages, réapplique ce qui a bougé et sait tout annuler. Il signale
+          aussi ce qui se règle dans le BIOS, comme le profil XMP, Resizable BAR ou Secure
+          Boot. Documenté en français et en anglais, et vérifié à chaque push : syntaxe,
+          PSScriptAnalyzer et tests sur une machine Windows.
         </p>
         <ul class="stack">
           <li>PowerShell 5.1</li><li>WMI / CIM</li><li>P/Invoke (C#)</li>
           <li>PSScriptAnalyzer</li><li>GitHub Actions</li>
         </ul>
         <p class="project-links">
-          <a href="https://github.com/slayerfx/pc-tuning" target="_blank" rel="noopener noreferrer">pc-tuning</a>
-          <a href="https://github.com/slayerfx/windows-disk-cleaner" target="_blank" rel="noopener noreferrer">windows-disk-cleaner</a>
+          <a href="https://github.com/slayerfx/pc-tuning" target="_blank" rel="noopener noreferrer" data-i18n="lien.code">Code source</a>
+        </p>
+      </div>
+    </article>
+
+    <!-- Capture d'une vraie simulation (Analyze.cmd), abregee : seules les
+         etapes qui trouvent quelque chose sont gardees. -->
+    <article class="project" id="windows-disk-cleaner" data-reveal>
+      <a class="project-media" href="https://github.com/slayerfx/windows-disk-cleaner" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true">
+        <img src="img/windows-disk-cleaner.webp" alt="" width="916" height="721" loading="lazy">
+      </a>
+      <div class="project-body">
+        <p class="project-num" aria-hidden="true">04</p>
+        <h3>windows-disk-cleaner</h3>
+        <p class="project-role" data-i18n="wdc.role">Nettoyage du disque système — outil personnel en PowerShell, développé avec l'aide de l'IA</p>
+        <p data-i18n="wdc.p1">
+          Libère souvent plusieurs Go sur le disque système, en ne supprimant que ce qui se
+          reconstruit tout seul : caches de shaders des anciens pilotes NVIDIA, paquets de
+          pilotes déjà installés, anciennes versions d'applis, caches des navigateurs et des
+          éditeurs de code.
+        </p>
+        <p data-i18n="wdc.p2">
+          Une simulation montre d'abord ce qui serait supprimé. Les applis ouvertes sont
+          laissées de côté, le cache du pilote actuel est conservé, et chaque passage est noté
+          dans un journal. Documenté en français et en anglais, et vérifié à chaque push sur
+          une machine Windows : syntaxe, PSScriptAnalyzer et simulations.
+        </p>
+        <ul class="stack">
+          <li>PowerShell 5.1</li><li>WMI / CIM</li><li>DISM</li>
+          <li>PSScriptAnalyzer</li><li>GitHub Actions</li>
+        </ul>
+        <p class="project-links">
+          <a href="https://github.com/slayerfx/windows-disk-cleaner" target="_blank" rel="noopener noreferrer" data-i18n="lien.code">Code source</a>
         </p>
       </div>
     </article>

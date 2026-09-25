@@ -20,7 +20,6 @@ const ANGLAIS = {
   /* --- chrome */
   'skip': 'Skip to content',
   'nav.label': 'Main navigation',
-  'nav.outils': 'Windows tools',
   'nav.oss': 'Open source',
   'nav.parcours': 'Background',
   'nav.contact': 'Contact',
@@ -57,21 +56,24 @@ const ANGLAIS = {
          + 'reader announcements. The <code>Host</code> header is validated against DNS '
          + 'rebinding, and reconfiguration is restricted to the host machine.',
 
-  'win.titre': 'Windows tools',
-  'win.role': 'pc-tuning and windows-disk-cleaner — personal PowerShell tools, built with the help of AI',
-  'win.p1': '<strong>pc-tuning</strong> makes a gaming and creation PC more responsive: '
-          + 'telemetry and promotional apps off, no power saving on the graphics card, USB '
-          + 'and network links, the power plan set to maximum, and optionally the Nahimic '
-          + 'audio layer removed. Windows updates quietly undo some of these: it checks the '
-          + 'forty or so settings, re-applies what drifted and can undo everything. It also '
-          + 'reports what is set in the BIOS, such as the XMP profile, Resizable BAR or '
-          + 'Secure Boot.',
-  'win.p2': '<strong>windows-disk-cleaner</strong> often frees several GB on the system '
-          + 'drive, deleting only what rebuilds itself: shader caches of old NVIDIA drivers, '
-          + 'driver packages already installed, old app versions, browser and code editor '
-          + 'caches. Dry run first. Both tools are documented in English and French, and '
-          + 'checked on every push: syntax, PSScriptAnalyzer and smoke tests on a Windows '
-          + 'runner.',
+  'pct.role': 'Windows tuning for gaming and creative work — personal PowerShell tool, built with the help of AI',
+  'pct.p1': 'Makes a gaming and creation PC more responsive: telemetry and promotional apps '
+          + 'off, no power saving on the graphics card, USB and network links, the power plan '
+          + 'set to maximum, and optionally the Nahimic audio layer removed.',
+  'pct.p2': 'Windows updates quietly undo some of these: it checks the forty or so settings, '
+          + 're-applies what drifted and can undo everything. It also reports what is set in '
+          + 'the BIOS, such as the XMP profile, Resizable BAR or Secure Boot. Documented in '
+          + 'English and French, and checked on every push: syntax, PSScriptAnalyzer and smoke '
+          + 'tests on a Windows runner.',
+
+  'wdc.role': 'System drive cleanup — personal PowerShell tool, built with the help of AI',
+  'wdc.p1': 'Often frees several GB on the system drive, deleting only what rebuilds itself: '
+          + 'shader caches of old NVIDIA drivers, driver packages already installed, old app '
+          + 'versions, browser and code editor caches.',
+  'wdc.p2': "A dry run first shows what would be deleted. Open apps are left alone, the "
+          + "current driver's cache is kept, and every run is logged. Documented in English "
+          + 'and French, and checked on every push on a Windows runner: syntax, '
+          + 'PSScriptAnalyzer and dry runs.',
 
   /* --- open source */
   'oss.titre': 'Open source internship — PHPOffice',

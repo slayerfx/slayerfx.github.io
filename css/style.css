@@ -253,7 +253,7 @@ code {
 .topbar nav ul {
   display: flex;
   gap: clamp(14px, 1.9vw, 24px);
-  /* Sur un telephone, cinq entrees ne tiennent pas. Plutot que d'en cacher —
+  /* Sur un telephone, toutes les entrees ne tiennent pas. Plutot que d'en cacher —
      il faudrait alors dupliquer des liens et le reperage de section perdrait
      sa cible — la liste defile. Le degrade a droite signale qu'il en reste. */
   overflow-x: auto;
@@ -650,6 +650,15 @@ h1 {
   border-top: 1px solid var(--line);
   padding-top: clamp(64px, 8vw, 118px);
 }
+
+/* Un lien du menu doit amener au projet, pas a l'espace qui le precede. La
+   cible est le haut du bloc : a partir du deuxieme projet, c'est le filet de
+   separation, suivi de toute la marge interieure. Le projet arrivait donc
+   bien en dessous de la barre, et le bas de son texte sortait de l'ecran.
+   La marge negative reprend exactement cette marge interieure, pour que
+   chaque projet arrive a la meme hauteur que le premier. */
+.project { scroll-margin-top: 16px; }
+.project + .project { scroll-margin-top: calc(16px - clamp(64px, 8vw, 118px)); }
 
 /* --- le visuel */
 
