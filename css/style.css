@@ -698,10 +698,13 @@ h1 {
   margin-bottom: 14px;
 }
 
+/* Meme taille pour tous les projets. Le plafond vient du titre le plus long,
+   « windows-disk-cleaner » : sa colonne ne depasse pas 460px, ou il ne tient
+   sur une ligne qu'en dessous de 47px. A 50px, il se coupait apres « disk- ». */
 .project h3 {
   font-family: var(--font-display);
   font-optical-sizing: auto;
-  font-size: clamp(30px, 3.6vw, 50px);
+  font-size: clamp(30px, 3.6vw, 44px);
   line-height: 1;
   letter-spacing: -.03em;
   font-weight: 700;
